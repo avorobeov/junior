@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace junior
 {
-    internal class Program
+    class Program
     {
+       
         static void Main(string[] args)
         {
-            string name = "Agnes";
-            sbyte level = 1;
-            byte age = 18;
-            float money = 10.99f;
-            double distance = 100.11;
-            uint progress = 55;
-            long countDeath = 150;
-            short countCrystals = 10;
-            int countFriends = 15;
-            bool isAdult = true;
+            int countImage = 52;
+            int countRow = countImage / 3; ;
+            int restImage = countImage % 3;
 
+            Console.WriteLine($"Количество полностью заполненных рядов: {countRow}");
+            Console.WriteLine($"Количество картинок сверх нормы: {restImage}");
+            Console.ReadLine();
         }
     }
 }
