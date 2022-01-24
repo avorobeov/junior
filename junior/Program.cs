@@ -11,9 +11,10 @@ namespace junior
        
         static void Main(string[] args)
         {
+            int countImageRow = 3;
             int countImage = 52;
-            int countRow = countImage / 3; ;
-            int restImage = countImage % 3;
+            int countRow = countImage / countImageRow;
+            int restImage = countImage % countImageRow;
 
             Console.WriteLine($"Количество полностью заполненных рядов: {countRow}");
             Console.WriteLine($"Количество картинок сверх нормы: {restImage}");
