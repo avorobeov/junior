@@ -15,7 +15,7 @@ namespace junior
             int countUserGold = Convert.ToInt32(Console.ReadLine());
             int courseOfCrystals = 3;
             int countUserCrystals = 0;
-            Console.WriteLine("Добрый день не хотели бе купить Кристалов по цене 1 Кристал 3 золотых");
+            Console.WriteLine("Добрый день не хотели бе купить Кристалов");
             Console.WriteLine("Для покупки ведите число кристалов:");
             int countPurchaseCrystals = Convert.ToInt32(Console.ReadLine());
             countUserGold -= countPurchaseCrystals * courseOfCrystals;
