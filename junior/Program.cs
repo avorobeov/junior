@@ -13,10 +13,11 @@ namespace junior
         {
             Console.WriteLine("Введите кол-во старушек:");
             int countGrandmas = Convert.ToInt32(Console.ReadLine());
+            int minutesInAnHour = 60;
             int queueWaitingTime = 10;
-            int waitingInMinutes = (countGrandmas * queueWaitingTime);
-            int waitingInHours = waitingInMinutes / 60;
-            Console.WriteLine($"Вы должны отстоять в очереди: {waitingInHours} часа и {waitingInMinutes - waitingInHours * 60} минут.");
+            int waitingInHours = (countGrandmas * queueWaitingTime) / minutesInAnHour;
+            int waitingInMinutes = (countGrandmas * queueWaitingTime) - waitingInHours * minutesInAnHour;
+            Console.WriteLine($"Вы должны отстоять в очереди: {waitingInHours} часа и {waitingInMinutes} минут.");
 
             Console.ReadKey();
         }
