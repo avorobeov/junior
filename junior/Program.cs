@@ -11,14 +11,18 @@ namespace junior
        
         static void Main(string[] args)
         {
-            int countImagePerline = 3;
-            int countImage = 52;
-            int countRow = countImage / countImagePerline;
-            int restImage = countImage % countImagePerline;
-
-            Console.WriteLine($"Количество полностью заполненных рядов: {countRow}");
-            Console.WriteLine($"Количество картинок сверх нормы: {restImage}");
-            Console.ReadLine();
+            Console.WriteLine("Ведите начальное количество золота:");
+            int countUserGold = Convert.ToInt32(Console.ReadLine());
+            int courseOfCrystals = 3;
+            int countUserCrystals = 0;
+            Console.WriteLine("Добрый день не хотели бе купить Кристалов по цене 1 Кристал 3 золотых");
+            Console.WriteLine("Для покупки ведите число кристалов:");
+            int countPurchaseCrystals = Convert.ToInt32(Console.ReadLine());
+            countUserGold -= countPurchaseCrystals * courseOfCrystals;
+            countUserCrystals += countPurchaseCrystals;
+            Console.WriteLine($"На вашему щиту {countUserCrystals} кристалов\r\n" +
+                              $"На вашему щиту {countUserGold} золотых");
+            Console.ReadKey();
         }
     }
 }
