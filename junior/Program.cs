@@ -8,20 +8,16 @@ namespace junior
 {
     class Program
     {
-       
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Ведите начальное количество золота:");
-            int countUserGold = Convert.ToInt32(Console.ReadLine());
-            int courseOfCrystals = 3;
-            int countUserCrystals = 0;
-            Console.WriteLine($"Добрый день не хотели бе купить Кристалов по цене 1 Кристал {courseOfCrystals} золотых");
-            Console.WriteLine("Для покупки ведите число кристалов:");
-            int countPurchaseCrystals = Convert.ToInt32(Console.ReadLine());
-            countUserGold -= countPurchaseCrystals * courseOfCrystals;
-            countUserCrystals += countPurchaseCrystals;
-            Console.WriteLine($"На вашему щиту {countUserCrystals} кристалов\r\n" +
-                              $"На вашему щиту {countUserGold} золотых");
+            Console.WriteLine("Введите кол-во старушек:");
+            int countGrandmas = Convert.ToInt32(Console.ReadLine());
+            int queueWaitingTime = 10;
+            int waitingInMinutes = (countGrandmas * queueWaitingTime);
+            int waitingInHours = waitingInMinutes / 60;
+            Console.WriteLine($"Вы должны отстоять в очереди: {waitingInHours} часа и {waitingInMinutes - waitingInHours * 60} минут.");
+
             Console.ReadKey();
         }
     }
