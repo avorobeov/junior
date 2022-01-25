@@ -11,22 +11,19 @@ namespace junior
 
         static void Main(string[] args)
         {
-            int countConclusions;
-            string textMessage;
+            Random random = new Random();
+            string userInput;
 
-            Console.WriteLine("Укажите сколько раз вывести вам сообщение: ");
-            countConclusions = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Укажите текст сообщения: ");
-            textMessage = Console.ReadLine();
-
-            Console.Clear();
-
-            for (int i = 1; i <= countConclusions; i++)
+            while (true)
             {
-                Console.WriteLine($"{i}) {textMessage}");
+                Console.WriteLine($"Ваше сгенерированное число: {random.Next(0, 100)}");
+               
+                userInput = Console.ReadLine();
+                if (userInput == "exit")
+                {
+                    break;
+                }
             }
-
-            Console.ReadLine();
         }
     }
 }
