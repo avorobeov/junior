@@ -13,15 +13,16 @@ namespace junior
         {
             Random random = new Random();
             string userInput;
+            bool isExit = false;
 
-            while (true)
+            while (isExit == false)
             {
-                Console.WriteLine($"Ваше сгенерированное число: {random.Next(0, 100)}");
-               
+                Console.WriteLine($"Ваше сгенерированное число: {random.Next(0, 100)}");
+
                 userInput = Console.ReadLine();
                 if (userInput == "exit")
                 {
-                    break;
+                    isExit = true;
                 }
             }
         }
