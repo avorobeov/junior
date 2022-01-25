@@ -11,15 +11,19 @@ namespace junior
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите кол-во старушек:");
-            int countGrandmas = Convert.ToInt32(Console.ReadLine());
-            int minutesInAnHour = 60;
-            int queueWaitingTime = 10;
-            int waitingInHours = (countGrandmas * queueWaitingTime) / minutesInAnHour;
-            int waitingInMinutes = (countGrandmas * queueWaitingTime) - waitingInHours * minutesInAnHour;
-            Console.WriteLine($"Вы должны отстоять в очереди: {waitingInHours} часа и {waitingInMinutes} минут.");
+            string userNama;
+            string userAge;
+            string userWork;
 
-            Console.ReadKey();
+            Console.Write("Ведите ваше имя: ");
+            userNama = Console.ReadLine();
+            Console.Write("Ведите ваш возраст: ");
+            userAge = Console.ReadLine();
+            Console.Write("Укажите вашу профессию: ");
+            userWork = Console.ReadLine();
+
+            Console.WriteLine($"Вас зовут {userNama} , вам {userAge} год, вы по профессии {userWork}");
+            Console.ReadLine();
         }
     }
 }
