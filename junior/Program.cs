@@ -35,15 +35,20 @@ namespace junior
             {
                 Console.WriteLine("Ведите какую валюту вы хотите поменять ?");
                 selectionExchangeCurrency = Convert.ToInt32(Console.ReadLine());
+                if (selectionExchangeCurrency == 4)
+                {
+                    isExid = true;
+                    break;
+                }
 
                 Console.WriteLine("Ведите сумму которую хотите обменять: ");
                 correncyCount = Convert.ToInt32(Console.ReadLine());
-                
+
 
                 switch (selectionExchangeCurrency)
                 {
                     case 1:
-                        isEnoughMmaney =  walletRub > (courseUsd * correncyCount);
+                        isEnoughMmaney = walletRub > (courseUsd * correncyCount);
                         if (isEnoughMmaney)
                         {
                             walletUsd += correncyCount;
@@ -79,15 +84,14 @@ namespace junior
                         }
 
                         break;
-                    case 4:
-                        isExid = true;
-                        break;
 
                 }
+               
                 Console.WriteLine($"На вашему кошельку {walletUsd} долларов {walletEur} евро и {walletUa} гривен и {walletRub} рублей");
+
             }
 
-
+            Console.WriteLine("Прощайте всего хорошего:) ");
             Console.ReadLine();
         }
     }
