@@ -11,90 +11,61 @@ namespace junior
 
         static void Main(string[] args)
         {
-            float walletRub = 100;
-            float walletUsd = 0;
-            float walletEur = 0;
-            float walletUa = 0;
+            string userName;
+            string userLastname = "" ;
+            string userPassword = "";
+            string userInputComand;
+            bool isExit = false;
 
-            float courseUsd = 76;
-            float courseEur = 89;
-            float courseUa = 2;
-            float correncyCount = 0;
+            Console.Write("Добрый день как я могу к вам обращаться: ");
+            userName = Console.ReadLine();
 
-            bool isExid = false;
-            bool isEnoughMmaney;
-            int selectionExchangeCurrency;
-
-            Console.WriteLine("Здравствуйте нашем обменнике вы можете поменять: \n" +
-                              "Рубли на доллары для этого нажмите 1 \n" +
-                              "Рубли на евро  для этого нажмите 2 \n" +
-                              "Рубли на гривны  для этого нажмите 3 \n" +
-                              "Для выхода нажмите 4\n\n\n");
-
-            while (isExid == false)
+            while (isExit == false)
             {
-                Console.WriteLine("Ведите какую валюту вы хотите поменять ?");
-                selectionExchangeCurrency = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Список команд \n\n" +
+                                  "1) Эта команда предназначена для смены имени  = Rename \n" +
+                                  "2) Эта команда предназначена для смены цвета текста на красный = ChangeTxtColorRed \n" +
+                                  "3) Эта команда предназначена для смены цвета текста на желтый = ChangeTxtColorYellow \n" +
+                                  "4) Эта команда сбрасывает цвет в исходное состояние = ResetЕextСolor \n" +
+                                  "5) Эта команда заполняет ваши данные в профиль = FillOutAForm \n" +
+                                  "6) Эта команда выводит ваши данные на экран = DisplayingDataOnTheScreen \n" +
+                                  "7) Эта команда закроет программу = Exit \n");
+                Console.Write("Ведите команду из списка: ");
+                userInputComand = Console.ReadLine();
 
-                if (selectionExchangeCurrency != 4)
+                switch (userInputComand)
                 {
-                    Console.WriteLine("Ведите сумму которую хотите обменять: ");
-                    correncyCount = Convert.ToInt32(Console.ReadLine());
-                }
-
-                switch (selectionExchangeCurrency)
-                {
-                    case 1:
-                        isEnoughMmaney = walletRub > (courseUsd * correncyCount);
-                        if (isEnoughMmaney)
-                        {
-                            walletUsd += correncyCount;
-                            walletRub -= correncyCount * courseUsd;
-                        }
-                        else
-                        {
-                            Console.WriteLine("К сожалению вам не хватает денег");
-                        }
+                    case "Rename":
+                        Console.Write("Ведите новое имя:");
+                        userName = Console.ReadLine();
+                        Console.WriteLine("Имя успешно изменено");
                         break;
-                    case 2:
-                        isEnoughMmaney = walletRub > (courseEur * correncyCount);
-                        if (isEnoughMmaney)
-                        {
-                            walletEur += correncyCount;
-                            walletRub -= correncyCount * courseEur;
-                        }
-                        else
-                        {
-                            Console.WriteLine("К сожалению вам не хватает денег");
-                        }
+                    case "ChangeTxtColorRed":
+                        Console.ForegroundColor = ConsoleColor.Red;
                         break;
-                    case 3:
-                        isEnoughMmaney = walletRub > (courseUa * correncyCount);
-                        if (isEnoughMmaney)
-                        {
-                            walletUa += correncyCount;
-                            walletRub -= correncyCount * courseUa;
-                        }
-                        else
-                        {
-                            Console.WriteLine("К сожалению вам не хватает денег");
-                        }
+                    case "ChangeTxtColorYellow":
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
-                    case 4:
-                        isExid = true;
+                    case "ResetЕextСolor":
+                        Console.ResetColor();
+                        break;
+                    case "FillOutAForm":
+                        Console.Write("Ведите свою фамилию: ");
+                        userLastname = Console.ReadLine();
+                        Console.Write("Ведите пароль: ");
+                        userPassword = Console.ReadLine();
+                        break;
+                    case "DisplayingDataOnTheScreen":
+                        Console.WriteLine($"Ваше имя: {userName} \n" +
+                                          $"Ваша фамилия: {userLastname} \n" +
+                                          $"Ваш пароль: {userPassword}");
+                        break;
+                    case "Exit":
+                        isExit = true;
                         break;
 
                 }
-
-                if (isExid == false)
-                {
-                    Console.WriteLine($"На вашему кошельку {walletUsd} долларов {walletEur} евро и {walletUa} гривен и {walletRub} рублей");
-                }
-
             }
-
-            Console.WriteLine("Прощайте всего хорошего:) ");
-            Console.ReadLine();
         }
     }
 }
