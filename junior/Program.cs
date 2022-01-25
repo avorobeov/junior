@@ -19,7 +19,7 @@ namespace junior
             float courseUsd = 76;
             float courseEur = 89;
             float courseUa = 2;
-            float correncyCount;
+            float correncyCount = 0;
 
             bool isExid = false;
             bool isEnoughMmaney;
@@ -35,15 +35,12 @@ namespace junior
             {
                 Console.WriteLine("Ведите какую валюту вы хотите поменять ?");
                 selectionExchangeCurrency = Convert.ToInt32(Console.ReadLine());
-                if (selectionExchangeCurrency == 4)
+
+                if (selectionExchangeCurrency != 4)
                 {
-                    isExid = true;
-                    break;
+                    Console.WriteLine("Ведите сумму которую хотите обменять: ");
+                    correncyCount = Convert.ToInt32(Console.ReadLine());
                 }
-
-                Console.WriteLine("Ведите сумму которую хотите обменять: ");
-                correncyCount = Convert.ToInt32(Console.ReadLine());
-
 
                 switch (selectionExchangeCurrency)
                 {
@@ -82,12 +79,17 @@ namespace junior
                         {
                             Console.WriteLine("К сожалению вам не хватает денег");
                         }
-
+                        break;
+                    case 4:
+                        isExid = true;
                         break;
 
                 }
-               
-                Console.WriteLine($"На вашему кошельку {walletUsd} долларов {walletEur} евро и {walletUa} гривен и {walletRub} рублей");
+
+                if (isExid == false)
+                {
+                    Console.WriteLine($"На вашему кошельку {walletUsd} долларов {walletEur} евро и {walletUa} гривен и {walletRub} рублей");
+                }
 
             }
 
