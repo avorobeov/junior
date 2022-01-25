@@ -11,18 +11,21 @@ namespace junior
 
         static void Main(string[] args)
         {
-            string userNama;
-            string userAge;
-            string userWork;
+            int countConclusions;
+            string textMessage;
 
-            Console.Write("Ведите ваше имя: ");
-            userNama = Console.ReadLine();
-            Console.Write("Ведите ваш возраст: ");
-            userAge = Console.ReadLine();
-            Console.Write("Укажите вашу профессию: ");
-            userWork = Console.ReadLine();
+            Console.WriteLine("Укажите сколько раз вывести вам сообщение: ");
+            countConclusions = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Укажите текст сообщения: ");
+            textMessage = Console.ReadLine();
 
-            Console.WriteLine($"Вас зовут {userNama} , вам {userAge} год, вы по профессии {userWork}");
+            Console.Clear();
+
+            for (int i = 1; i <= countConclusions; i++)
+            {
+                Console.WriteLine($"{i}) {textMessage}");
+            }
+
             Console.ReadLine();
         }
     }
