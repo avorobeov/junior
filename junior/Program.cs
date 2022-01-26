@@ -15,7 +15,7 @@ namespace junior
             string userName;
             string userInputSymbol;
             int countCharactersName;
-            int rectangleEnlargement = 1;
+            int rectangleEnlargementX = 1;
             bool isEnding = false;
 
             Console.Write("Ведите, пожалуйста, своё имя: ");
@@ -29,10 +29,10 @@ namespace junior
             Console.WriteLine("\n\n\n");
             Console.ForegroundColor = ConsoleColor.Red;
 
-            for (int i = 0; i <= countCharactersName + rectangleEnlargement; i++)
+            for (int i = 0; i <= countCharactersName + rectangleEnlargementX; i++)
             {
                 Console.Write(userInputSymbol);
-                if(i == countCharactersName + rectangleEnlargement && isEnding == false)
+                if(i == countCharactersName + rectangleEnlargementX && isEnding == false)
                 {
                     Console.Write($"\n{userInputSymbol + userName + userInputSymbol} \n");
                     i = -1;
