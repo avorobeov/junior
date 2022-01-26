@@ -12,14 +12,33 @@ namespace junior
         static void Main(string[] args)
         {
 
-            int numberIncrease = 7;
-            int zoomLimits = 98;
+            string userName;
+            string userInputSymbol;
+            int countCharactersName;
+            int rectangleEnlargement = 1;
+            bool isEnding = false;
+            Console.Write("Ведите, пожалуйста, своё имя: ");
+            userName = Console.ReadLine();
 
-            for (int i = numberIncrease; i <= zoomLimits; i += numberIncrease)
+            Console.Write("Ведите, пожалуйста, символ:");
+            userInputSymbol = Console.ReadLine();
+
+            countCharactersName = userName.Length;
+
+            Console.WriteLine("\n\n\n");
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            for (int i = 0; i <= countCharactersName + rectangleEnlargement; i++)
             {
-                Console.WriteLine(i);
+                Console.Write(userInputSymbol);
+                if(i == countCharactersName + rectangleEnlargement && isEnding == false)
+                {
+                    Console.Write($"\n{userInputSymbol + userName + userInputSymbol} \n");
+                    i = -1;
+                    isEnding = true;
+                }
             }
-            Console.ReadKey();
+            Console.ReadLine();
         }
     }
 }
