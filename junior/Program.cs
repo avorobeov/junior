@@ -16,6 +16,7 @@ namespace junior
             string userInputSymbol;
             int countCharactersName;
             int rectangleEnlargementX = 3;
+            int returnsCursorStartCoordinates = -1;
             bool isEnding = false;
 
             Console.Write("Ведите, пожалуйста, своё имя: ");
@@ -35,7 +36,7 @@ namespace junior
                 if (i == countCharactersName + rectangleEnlargementX && isEnding == false)
                 {
                     Console.Write($"\n{userInputSymbol} {userName} {userInputSymbol} \n");
-                    i = -1;
+                    i = returnsCursorStartCoordinates;
                     isEnding = true;
                 }
             }

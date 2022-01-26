@@ -23,6 +23,7 @@ namespace junior
             int userSpellsRashamonВamage = 100;
             int userSpellsHuganzakuraВamage = 100;
             int userSpellsDimensionalRift = 250;
+            int actuationPointDimensionalRift = 100;
             bool isDamageBlocking = false;
             bool isSpellCast = false;
 
@@ -35,6 +36,11 @@ namespace junior
 
             int bossHealth;
             int bossImpactВamage;
+
+            int countSpells = 4;
+            int minimumAmountHealthUser = 0;
+            int minimumAmountHealthBoss = 0;
+
             Console.Write("Ведите количество боёв: ");
             countFight = Convert.ToInt32(Console.ReadLine());
 
@@ -46,11 +52,11 @@ namespace junior
                 bossHealth = random.Next(500, 600);
                 bossImpactВamage = random.Next(30, 40);
 
-                while (bossHealth > 0 && userHealth > 0)
+                while (bossHealth > minimumAmountHealthBoss && userHealth > minimumAmountHealthUser)
                 {
                     while (!isSpellCast)
                     {
-                        switch (random.Next(0, 4))
+                        switch (random.Next(0, countSpells))
                         {
                             case 1:
                                 if (isSpiritAlive == false)
@@ -72,7 +78,7 @@ namespace junior
                                 }
                                 break;
                             case 3:
-                                if (userHealth <= 100)
+                                if (userHealth <= actuationPointDimensionalRift)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Green;
                                     Console.WriteLine($"Я произнёс заклинание  Межпространственный разлом и восстановил {userSpellsDimensionalRift} здоровья и получил не уязвимость на одну атаку");
@@ -86,14 +92,7 @@ namespace junior
                     }
                     isSpellCast = false;
 
-                    if (lifeTimeSpirit > 0)
-                    {
-                        isSpiritAlive = true;
-                    }
-                    else
-                    {
-                        isSpiritAlive = false;
-                    }
+                    isSpiritAlive = lifeTimeSpirit > 0;
                     if (isSpiritAlive == true)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -114,19 +113,19 @@ namespace junior
                     }
                     isDamageBlocking = false;
                 }
-                if (userHealth <= 0 && bossHealth <= 0)
+                if (userHealth <= minimumAmountHealthUser && bossHealth <= minimumAmountHealthBoss)
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("Оба героя пали в этом бою");
                     countDraw++;
                 }
-                else if (userHealth <= 0)
+                else if (userHealth <= minimumAmountHealthUser)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Герой проиграл босс, одержал победу");
                     countBossWin++;
                 }
-                else if (bossHealth <= 0)
+                else if (bossHealth <= minimumAmountHealthBoss)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Я выиграл босс, потерпел поражение");
