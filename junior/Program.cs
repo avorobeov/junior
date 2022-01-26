@@ -17,6 +17,7 @@ namespace junior
             int countCharactersName;
             int rectangleEnlargement = 1;
             bool isEnding = false;
+
             Console.Write("Ведите, пожалуйста, своё имя: ");
             userName = Console.ReadLine();
 
