@@ -32,7 +32,7 @@ namespace junior
             for (int i = 0; i <= countCharactersName + rectangleEnlargementX; i++)
             {
                 Console.Write(userInputSymbol);
-                if(i == countCharactersName + rectangleEnlargementX && isEnding == false)
+                if (i == countCharactersName + rectangleEnlargementX && isEnding == false)
                 {
                     Console.Write($"\n{userInputSymbol} {userName} {userInputSymbol} \n");
                     i = -1;
