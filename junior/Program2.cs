@@ -136,7 +136,7 @@ namespace junior
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Количество побет героя: {countPlayerWin} \n" +
                               $"Количество побет босса:{countBossWin} \n" +
-                              $"количество ничей: {countDraw}");
+                              $"Количество ничей: {countDraw}");
             Console.ReadLine();
         }
     }
