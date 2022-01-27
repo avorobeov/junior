@@ -41,6 +41,7 @@ namespace junior
             bool isHeroAlive;
             bool isBossAlive;
             bool isEndBattle;
+
             Console.Write("Ведите количество боёв: ");
             countFight = Convert.ToInt32(Console.ReadLine());
 
