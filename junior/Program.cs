@@ -11,164 +11,28 @@ namespace junior
 
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int countFight = 0;
-            int countPlayerWin = 0;
-            int countBossWin = 0;
-            int countDraw = 0;
-
-
-            int userHealth;
-            int userImpactDamage;
-            int userSpellsRashamonDamage;
-            int userSpellsHuganzakuraDamage;
-            int userSpellsDimensionalRift;
-            int actuationPointDimensionalRift;
-            bool isDamageBlocking;
-            bool isUserSpellCast;
-
-
-            bool isSpiritAlive;
-            int lifeTimeSpirit;
-            int increaseLifetimeOfspirit;
-            int bamageSpirit;
-
-
-            int bossHealth;
-            int bossImpactDamage;
-
-            int countSpells = 4;
-            bool isHeroAlive;
-            bool isBossAlive;
-            bool isEndBattle;
-
-            Console.Write("Ведите количество боёв: ");
-            countFight = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < countFight; i++)
+            int[,] arrayNumber = { { 1, 1, 1, 1, 1, 1 }, { 2, 2, 2, 2, 2, 2 } };
+            int[] arraySumNumbers = new int[arrayNumber.GetLength(0)];
+            int sumNumbers = 0;
+            for (int i = 0; i < arrayNumber.GetLength(0); i++)
             {
-                userHealth = random.Next(500, 600);
-                userImpactDamage = random.Next(10, 20);
-                userSpellsRashamonDamage = random.Next(70, 111);
-                userSpellsHuganzakuraDamage = random.Next(50, 101);
-                userSpellsDimensionalRift = random.Next(151, 261);
-                actuationPointDimensionalRift = random.Next(70, 101);
-                isDamageBlocking = false;
-                isUserSpellCast = false;
-
-                isSpiritAlive = false;
-                lifeTimeSpirit = 0;
-                increaseLifetimeOfspirit = random.Next(1, 5);
-                bamageSpirit = random.Next(5, 13); ;
-
-                bossHealth = random.Next(500, 600);
-                bossImpactDamage = random.Next(30, 40);
-
-                isHeroAlive = true;
-                isBossAlive = true;
-                isEndBattle = false;
-
-                while (isEndBattle == false)
+                for (int j = 0; j < arrayNumber.GetLength(1); j++)
                 {
-                    while (!isUserSpellCast)
-                    {
-                        switch (random.Next(0, countSpells))
-                        {
-                            case 1:
-                                if (isSpiritAlive == false)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine($"Я произнёс заклинание  Рашамон  и вызвал духа (-{userSpellsRashamonDamage})");
-                                    userHealth -= userSpellsRashamonDamage;
-                                    lifeTimeSpirit += increaseLifetimeOfspirit;
-                                    isUserSpellCast = true;
-                                }
-                                break;
-                            case 2:
-                                if (isSpiritAlive == true)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                    Console.WriteLine($"Я произнёс заклинание  Хуганзакура  и враг получил {userSpellsHuganzakuraDamage} урона");
-                                    bossHealth -= userSpellsHuganzakuraDamage;
-                                    isUserSpellCast = true;
-                                }
-                                break;
-                            case 3:
-                                if (userHealth <= actuationPointDimensionalRift)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine($"Я произнёс заклинание  Межпространственный разлом и восстановил {userSpellsDimensionalRift} здоровья и получил не уязвимость на одну атаку");
-                                    userHealth += userSpellsDimensionalRift;
-                                    isDamageBlocking = true;
-                                    isUserSpellCast = true;
-                                }
-                                break;
-                        }
-
-                    }
-                    isUserSpellCast = false;
-
-                    isSpiritAlive = lifeTimeSpirit > 0;
-                    if (isSpiritAlive == true)
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
-                        Console.WriteLine("Дух наносит удар");
-                        bossHealth -= bamageSpirit;
-                        lifeTimeSpirit--;
-                    }
-
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    Console.WriteLine($"Я бью врага! Враг получил {userImpactDamage} урона ");
-                    bossHealth -= userImpactDamage;
-
-                    if (isDamageBlocking != true)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"Враг наносит мене удар  ! Я получил урон {bossImpactDamage}");
-                        userHealth -= bossImpactDamage;
-                    }
-                    isDamageBlocking = false;
-            
-                    if(userHealth <= 0 && bossHealth <= 0)
-                    {
-                        isHeroAlive = false;
-                        isBossAlive = false;
-                    }
-                    else if (userHealth <= 0)
-                    {
-                        isHeroAlive = false;
-                    }
-                    else if (bossHealth <= 0)
-                    {
-                        isBossAlive = false;
-                    }
-                    isEndBattle = isHeroAlive == false || isBossAlive == false;
+                    Console.Write(arrayNumber[i, j]);
+                    sumNumbers += arrayNumber[i, j];
+                    arraySumNumbers[i] = sumNumbers;
                 }
-                if (isHeroAlive == false && isBossAlive == false)
-                {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Оба героя пали в этом бою");
-                    countDraw++;
-                }
-                else if (isHeroAlive == false)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Герой проиграл босс, одержал победу");
-                    countBossWin++;
-                }
-                else if (isBossAlive == false)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Я выиграл босс, потерпел поражение");
-                    countPlayerWin++;
-                }
+                Console.WriteLine();
+                sumNumbers = 0;
             }
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Количество побет героя: {countPlayerWin} \n" +
-                              $"Количество побет босса:{countBossWin} \n" +
-                              $"Количество ничей: {countDraw}");
-            Console.ReadLine();
+
+            for (int i = 0; i < arraySumNumbers.Length; i++)
+            {
+                Console.WriteLine($"Сума {i} столбца равняется  {arraySumNumbers[i]}");
+            }
+            Console.ReadKey();
+
+
         }
     }
 }
