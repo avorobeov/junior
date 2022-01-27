@@ -13,10 +13,9 @@ namespace junior
         {
             string userInputPassword;
             string userPasword = "ijunior";
-            int countErrorsInputPassword = 0;
-            int maximumСountErrorInputPassword = 3;
-
-            for (int i = 0; i < maximumСountErrorInputPassword; i++)
+            int countAttempts = 3;
+            int attemptsLeft = 0;
+            for (int i = 0; i < 3; i++)
             {
                 Console.Write("Ведите пароль для вывода секретного текста: ");
                 userInputPassword = Console.ReadLine();
@@ -26,12 +25,12 @@ namespace junior
                     Console.WriteLine("Секретное сообщение \n" +
                                       "Нажмите любую клавишу для закрытия программы ");
                     Console.ReadKey();
-                    Environment.Exit(0);
+                    i = 3;
                 }
                 else
                 {
-                    countErrorsInputPassword++;
-                    Console.WriteLine($"Пароль не верный у вас осталось {maximumСountErrorInputPassword - countErrorsInputPassword} попыток \n");
+                    attemptsLeft = countAttempts - i;
+                    Console.WriteLine($"Пароль не верный у вас осталось {attemptsLeft} попыток \n");
                 }
             }
 
