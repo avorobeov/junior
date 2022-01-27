@@ -11,28 +11,43 @@ namespace junior
 
         static void Main(string[] args)
         {
-            string userInputPassword;
-            string userPasword = "ijunior";
-            int countAttempts = 3;
-            int attemptsLeft = 0;
-            for (int i = 0; i < countAttempts; i++)
-            {
-                Console.Write("Ведите пароль для вывода секретного текста: ");
-                userInputPassword = Console.ReadLine();
+            int[,] arrayNumber = {{1, 2, 3, 6, 55, 66, 77},
+                                  {4, 5, 6, 34, 21, 76, 32},
+                                  {7, 8, 9,12,24,22,23}};
+            int maximumNumber = int.MinValue;
+            int numberColumn = 0;
+            int numberLine = 0;
 
-                if (userInputPassword == userPasword)
+            Console.WriteLine("Исходная матрица");
+            for (int i = 0; i < arrayNumber.GetLength(0); i++)
+            {
+                for (int j = 0; j < arrayNumber.GetLength(1); j++)
                 {
-                    Console.WriteLine("Секретное сообщение \n" +
-                                      "Нажмите любую клавишу для закрытия программы ");
-                    Console.ReadKey();
-                    i = countAttempts;
+                    Console.Write(arrayNumber[i, j] + " ");
+                    if (maximumNumber <= arrayNumber[i, j])
+                    {
+                        maximumNumber = arrayNumber[i, j];
+                        numberColumn = i;
+                        numberLine = j;
+                    }
                 }
-                else
-                {
-                    attemptsLeft = countAttempts - i;
-                    Console.WriteLine($"Пароль не верный у вас осталось {attemptsLeft} попыток \n");
-                }
+                Console.WriteLine();
             }
+
+            arrayNumber[numberColumn, numberLine] = 0;
+
+            Console.WriteLine("Изменённая матрица");
+            for (int i = 0; i < arrayNumber.GetLength(0); i++)
+            {
+                for (int j = 0; j < arrayNumber.GetLength(1); j++)
+                {
+                    Console.Write(arrayNumber[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine($"Самое большое число {maximumNumber}");
+            Console.ReadKey();
 
         }
     }
