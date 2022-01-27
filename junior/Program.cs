@@ -15,6 +15,7 @@ namespace junior
                                   {4, 5, 6},
                                   {7, 8, 9}};
 
+            int indexBeforeCastElement = arrayNumber.GetLength(0) - 1;
             int sumNumbers = 0;
             int firstColumnProduct = 0;
 
@@ -29,7 +30,7 @@ namespace junior
                 Console.WriteLine();
             }
 
-            for (int i = 0; i < arrayNumber.GetLength(0) - 1;)
+            for (int i = 0; i < indexBeforeCastElement;)
             {
                 firstColumnProduct = arrayNumber[i, 0] * arrayNumber[++i, 0];
             }
