@@ -52,6 +52,7 @@ namespace junior
                 userSpellsHuganzakuraDamage = random.Next(50, 101);
                 userSpellsDimensionalRift = random.Next(151, 261);
                 actuationPointDimensionalRift = random.Next(70, 101);
+                isUserSpellCast = false;
 
                 increaseLifetimeOfspirit = random.Next(1, 5);
                 bamageSpirit = random.Next(5, 13); ;
@@ -123,6 +124,7 @@ namespace junior
                         userHealth -= bossImpactDamage;
                     }
                     isDamageBlocking = false;
+            
                     if(userHealth <= 0 && bossHealth <= 0)
                     {
                         isHeroAlive = false;
