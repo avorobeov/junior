@@ -14,6 +14,7 @@ namespace junior
 
             string userName;
             string userInputSymbol;
+            string nameOutput = "";
             int countCharactersName;
             int rectangleEnlargementX = 3;
             int returnsCursorStartCoordinates = -1;
@@ -32,14 +33,29 @@ namespace junior
 
             for (int i = 0; i <= countCharactersName + rectangleEnlargementX; i++)
             {
-                Console.Write(userInputSymbol);
+                nameOutput += userInputSymbol;
                 if (i == countCharactersName + rectangleEnlargementX && isEnding == false)
                 {
-                    Console.Write($"\n{userInputSymbol} {userName} {userInputSymbol} \n");
+                    nameOutput += $"\n{userInputSymbol} {userName} {userInputSymbol} \n";
                     i = returnsCursorStartCoordinates;
                     isEnding = true;
                 }
             }
+            Console.WriteLine(nameOutput);
+            Console.ReadLine();
+
+            for (int i = 0; i <= countCharactersName + rectangleEnlargementX; i++)
+            {
+                Console.Write(userInputSymbol);
+            }
+
+            Console.WriteLine($"\n{userInputSymbol} {userName} {userInputSymbol}");
+
+            for (int i = 0; i <= countCharactersName + rectangleEnlargementX; i++)
+            {
+                Console.Write(userInputSymbol);
+            }
+
             Console.ReadLine();
         }
     }
