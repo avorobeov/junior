@@ -11,133 +11,33 @@ namespace junior
 
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int countFight = 0;
-            int countPlayerWin = 0;
-            int countBossWin = 0;
-            int countDraw = 0;
+            int[] arrayNumber = {12,43,35,30,34,23,23,65,67,98,54,34,56,335,45,34,23,45,56,54,12,45,76,34,98,14,67,45,43,56};
+            int indexBeforeCastElement = arrayNumber.Length -1;
 
-
-            int userHealth;
-            int userImpactВamage;
-            int userSpellsRashamonВamage = 100;
-            int userSpellsHuganzakuraВamage = 100;
-            int userSpellsDimensionalRift = 250;
-            int actuationPointDimensionalRift = 100;
-            bool isDamageBlocking = false;
-            bool isSpellCast = false;
-
-
-            bool isSpiritAlive = false;
-            int lifeTimeSpirit = 0;
-            int increaseLifetimeOfspirit = 2;
-            int bamageSpirit = 10;
-
-
-            int bossHealth;
-            int bossImpactВamage;
-
-            int countSpells = 4;
-            int minimumAmountHealthUser = 0;
-            int minimumAmountHealthBoss = 0;
-
-            Console.Write("Ведите количество боёв: ");
-            countFight = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < countFight; i++)
+            bool isLocalMaximumСheck = false;
+         
+            for (int i = 1; i < arrayNumber.Length; i++)
             {
-                userHealth = random.Next(500, 600);
-                userImpactВamage = random.Next(10, 20);
-
-                bossHealth = random.Next(500, 600);
-                bossImpactВamage = random.Next(30, 40);
-
-                while (bossHealth > minimumAmountHealthBoss && userHealth > minimumAmountHealthUser)
+                if (indexBeforeCastElement != i)
                 {
-                    while (!isSpellCast)
+                    isLocalMaximumСheck = arrayNumber[i] > arrayNumber[i - 1] && arrayNumber[i] > arrayNumber[i + 1];
+                    if (isLocalMaximumСheck)
                     {
-                        switch (random.Next(0, countSpells))
-                        {
-                            case 1:
-                                if (isSpiritAlive == false)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine($"Я произнёс заклинание  Рашамон  и вызвал духа (-{userSpellsRashamonВamage})");
-                                    userHealth -= userSpellsRashamonВamage;
-                                    lifeTimeSpirit += increaseLifetimeOfspirit;
-                                    isSpellCast = true;
-                                }
-                                break;
-                            case 2:
-                                if (isSpiritAlive == true)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                    Console.WriteLine($"Я произнёс заклинание  Хуганзакура  и враг получил {userSpellsHuganzakuraВamage} урона");
-                                    bossHealth -= userSpellsHuganzakuraВamage;
-                                    isSpellCast = true;
-                                }
-                                break;
-                            case 3:
-                                if (userHealth <= actuationPointDimensionalRift)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine($"Я произнёс заклинание  Межпространственный разлом и восстановил {userSpellsDimensionalRift} здоровья и получил не уязвимость на одну атаку");
-                                    userHealth += userSpellsDimensionalRift;
-                                    isDamageBlocking = true;
-                                    isSpellCast = true;
-                                }
-                                break;
-                        }
-
+                      Console.WriteLine(arrayNumber[i]);
                     }
-                    isSpellCast = false;
-
-                    isSpiritAlive = lifeTimeSpirit > 0;
-                    if (isSpiritAlive == true)
+                    isLocalMaximumСheck = false;
+                }
+                else if (indexBeforeCastElement == i)
+                {
+                    isLocalMaximumСheck = arrayNumber[i] > arrayNumber[i - 1];
+                    if (isLocalMaximumСheck)
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
-                        Console.WriteLine("Дух наносит удар");
-                        bossHealth -= bamageSpirit;
-                        lifeTimeSpirit--;
+                        Console.WriteLine(arrayNumber[i]);
                     }
-
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    Console.WriteLine($"Я бью врага! Враг получил {userImpactВamage} урона ");
-                    bossHealth -= userImpactВamage;
-
-                    if (isDamageBlocking != true)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"Враг наносит мене удар  ! Я получил урон {bossImpactВamage}");
-                        userHealth -= bossImpactВamage;
-                    }
-                    isDamageBlocking = false;
-                }
-                if (userHealth <= minimumAmountHealthUser && bossHealth <= minimumAmountHealthBoss)
-                {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Оба героя пали в этом бою");
-                    countDraw++;
-                }
-                else if (userHealth <= minimumAmountHealthUser)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Герой проиграл босс, одержал победу");
-                    countBossWin++;
-                }
-                else if (bossHealth <= minimumAmountHealthBoss)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Я выиграл босс, потерпел поражение");
-                    countPlayerWin++;
+                    isLocalMaximumСheck = false;
                 }
             }
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Количество побет героя: {countPlayerWin} \n" +
-                              $"Количество побет босса:{countBossWin} \n" +
-                              $"Количество ничей: {countDraw}");
-            Console.ReadLine();
+
         }
     }
 }
