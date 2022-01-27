@@ -38,9 +38,9 @@ namespace junior
             int bossImpactDamage;
 
             int countSpells = 4;
-            int minimumAmountHealthUser = 0;
-            int minimumAmountHealthBoss = 0;
-
+            bool isHeroAlive;
+            bool isBossAlive;
+            bool isEndBattle;
             Console.Write("Ведите количество боёв: ");
             countFight = Convert.ToInt32(Console.ReadLine());
 
@@ -59,7 +59,11 @@ namespace junior
                 bossHealth = random.Next(500, 600);
                 bossImpactDamage = random.Next(30, 40);
 
-                while (bossHealth > minimumAmountHealthBoss && userHealth > minimumAmountHealthUser)
+                isHeroAlive = true;
+                isBossAlive = true;
+                isEndBattle = false;
+
+                while (isEndBattle == false)
                 {
                     while (!isUserSpellCast)
                     {
@@ -119,20 +123,30 @@ namespace junior
                         userHealth -= bossImpactDamage;
                     }
                     isDamageBlocking = false;
+
+                    if (userHealth <= 0)
+                    {
+                        isHeroAlive = false;
+                    }
+                    else if (bossHealth <= 0)
+                    {
+                        isBossAlive = false;
+                    }
+                    isEndBattle = isHeroAlive == false || isBossAlive == false;
                 }
-                if (userHealth <= minimumAmountHealthUser && bossHealth <= minimumAmountHealthBoss)
+                if (isHeroAlive == false && isBossAlive == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("Оба героя пали в этом бою");
                     countDraw++;
                 }
-                else if (userHealth <= minimumAmountHealthUser)
+                else if (isHeroAlive == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Герой проиграл босс, одержал победу");
                     countBossWin++;
                 }
-                else if (bossHealth <= minimumAmountHealthBoss)
+                else if (isBossAlive == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Я выиграл босс, потерпел поражение");
