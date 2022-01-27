@@ -123,8 +123,12 @@ namespace junior
                         userHealth -= bossImpactDamage;
                     }
                     isDamageBlocking = false;
-
-                    if (userHealth <= 0)
+                    if(userHealth <= 0 && bossHealth <= 0)
+                    {
+                        isHeroAlive = false;
+                        isBossAlive = false;
+                    }
+                    else if (userHealth <= 0)
                     {
                         isHeroAlive = false;
                     }
