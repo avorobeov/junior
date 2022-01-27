@@ -29,9 +29,9 @@ namespace junior
 
 
             bool isSpiritAlive;
-            int lifeTimeSpirit = 0;
-            int increaseLifetimeOfspirit = 2;
-            int bamageSpirit = 10;
+            int lifeTimeSpirit;
+            int increaseLifetimeOfspirit;
+            int bamageSpirit;
 
 
             int bossHealth;
@@ -56,6 +56,7 @@ namespace junior
                 isUserSpellCast = false;
 
                 isSpiritAlive = false;
+                lifeTimeSpirit = 0;
                 increaseLifetimeOfspirit = random.Next(1, 5);
                 bamageSpirit = random.Next(5, 13); ;
 
