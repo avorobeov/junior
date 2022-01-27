@@ -24,11 +24,11 @@ namespace junior
             int userSpellsHuganzakuraDamage;
             int userSpellsDimensionalRift;
             int actuationPointDimensionalRift;
-            bool isDamageBlocking = false;
-            bool isUserSpellCast = false;
+            bool isDamageBlocking;
+            bool isUserSpellCast;
 
 
-            bool isSpiritAlive = false;
+            bool isSpiritAlive;
             int lifeTimeSpirit = 0;
             int increaseLifetimeOfspirit = 2;
             int bamageSpirit = 10;
@@ -52,8 +52,10 @@ namespace junior
                 userSpellsHuganzakuraDamage = random.Next(50, 101);
                 userSpellsDimensionalRift = random.Next(151, 261);
                 actuationPointDimensionalRift = random.Next(70, 101);
+                isDamageBlocking = false;
                 isUserSpellCast = false;
 
+                isSpiritAlive = false;
                 increaseLifetimeOfspirit = random.Next(1, 5);
                 bamageSpirit = random.Next(5, 13); ;
 
