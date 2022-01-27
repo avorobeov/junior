@@ -15,7 +15,8 @@ namespace junior
             string userPasword = "ijunior";
             int countAttempts = 3;
             int attemptsLeft = 0;
-            for (int i = 0; i < 3; i++)
+            int maximumError=3;
+            for (int i = 0; i < maximumError; i++)
             {
                 Console.Write("Ведите пароль для вывода секретного текста: ");
                 userInputPassword = Console.ReadLine();
@@ -25,7 +26,7 @@ namespace junior
                     Console.WriteLine("Секретное сообщение \n" +
                                       "Нажмите любую клавишу для закрытия программы ");
                     Console.ReadKey();
-                    i = 3;
+                    i = maximumError;
                 }
                 else
                 {
