@@ -12,41 +12,43 @@ namespace junior
         static void Main(string[] args)
         {
             Random random = new Random();
-            int[,] arrayNumber = new int[10, 10];
+            int[,] numbers = new int[10, 10];
             int maximumNumber = int.MinValue;
 
-            for (int i = 0; i < arrayNumber.GetLength(0); i++)
+            for (int i = 0; i < numbers.GetLength(0); i++)
             {
-                for (int j = 0; j < arrayNumber.GetLength(1); j++)
+                for (int j = 0; j < numbers.GetLength(1); j++)
                 {
-                    arrayNumber[i, j] = random.Next(0,1000);
+                    numbers[i, j] = random.Next(0,1000);
                 }
             }
 
             Console.WriteLine("Исходная матрица");
-            for (int i = 0; i < arrayNumber.GetLength(0); i++)
+
+            for (int i = 0; i < numbers.GetLength(0); i++)
             {
-                for (int j = 0; j < arrayNumber.GetLength(1); j++)
+                for (int j = 0; j < numbers.GetLength(1); j++)
                 {
-                    Console.Write(arrayNumber[i, j] + " ");
-                    if (maximumNumber <= arrayNumber[i, j])
+                    Console.Write(numbers[i, j] + " ");
+                    if (maximumNumber <= numbers[i, j])
                     {
-                        maximumNumber = arrayNumber[i, j];
+                        maximumNumber = numbers[i, j];
                     }
                 }
                 Console.WriteLine();
             }
 
             Console.WriteLine("Изменённая матрица");
-            for (int i = 0; i < arrayNumber.GetLength(0); i++)
+
+            for (int i = 0; i < numbers.GetLength(0); i++)
             {
-                for (int j = 0; j < arrayNumber.GetLength(1); j++)
+                for (int j = 0; j < numbers.GetLength(1); j++)
                 {
-                    if (maximumNumber == arrayNumber[i, j])
+                    if (maximumNumber == numbers[i, j])
                     {
-                        arrayNumber[i, j] = 0;
+                        numbers[i, j] = 0;
                     }
-                    Console.Write(arrayNumber[i, j] + " ");
+                    Console.Write(numbers[i, j] + " ");
                 }
                 Console.WriteLine();
             }
