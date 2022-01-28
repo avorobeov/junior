@@ -11,12 +11,17 @@ namespace junior
 
         static void Main(string[] args)
         {
-            int[,] arrayNumber = {{1, 2, 3, 6, 55, 66, 77,32,43,43},
-                                  {4, 5, 6, 34, 21, 76, 32,43,66,22},
-                                  {7, 8, 9,12,24,22,23,432,45,432}};
+            Random random = new Random();
+            int[,] arrayNumber = new int[10, 10];
             int maximumNumber = int.MinValue;
-            int numberColumn = 0;
-            int numberLine = 0;
+
+            for (int i = 0; i < arrayNumber.GetLength(0); i++)
+            {
+                for (int j = 0; j < arrayNumber.GetLength(1); j++)
+                {
+                    arrayNumber[i, j] = random.Next(0,1000);
+                }
+            }
 
             Console.WriteLine("Исходная матрица");
             for (int i = 0; i < arrayNumber.GetLength(0); i++)
