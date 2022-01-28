@@ -11,51 +11,31 @@ namespace junior
 
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int[,] numbers = new int[10, 10];
-            int maximumNumber = int.MinValue;
+            int[] arrayNumber = { 12, 43, 35, 30, 34, 23, 23, 65, 67, 98, 54, 34, 56, 335, 45, 34, 23, 45, 56, 54, 12, 45, 76, 34, 98, 14, 67, 45, 43, 56 };
 
-            for (int i = 0; i < numbers.GetLength(0); i++)
+            if (arrayNumber[0] > arrayNumber[1])
             {
-                for (int j = 0; j < numbers.GetLength(1); j++)
-                {
-                    numbers[i, j] = random.Next(0,1000);
-                }
+                Console.WriteLine(arrayNumber[0]);
             }
 
-            Console.WriteLine("Исходная матрица");
-
-            for (int i = 0; i < numbers.GetLength(0); i++)
+            for (int i = 1; i < arrayNumber.Length; i++)
             {
-                for (int j = 0; j < numbers.GetLength(1); j++)
+                if (arrayNumber.Length - 1 != i)
                 {
-                    Console.Write(numbers[i, j] + " ");
-                    if (maximumNumber <= numbers[i, j])
+                    if (arrayNumber[i] > arrayNumber[i - 1] && arrayNumber[i] > arrayNumber[i + 1])
                     {
-                        maximumNumber = numbers[i, j];
+                        {
+                            Console.WriteLine(arrayNumber[i]);
+                        }
                     }
                 }
-                Console.WriteLine();
             }
 
-            Console.WriteLine("Изменённая матрица");
-
-            for (int i = 0; i < numbers.GetLength(0); i++)
+            if (arrayNumber[arrayNumber.Length - 1] > arrayNumber[arrayNumber.Length - 2])
             {
-                for (int j = 0; j < numbers.GetLength(1); j++)
-                {
-                    if (maximumNumber == numbers[i, j])
-                    {
-                        numbers[i, j] = 0;
-                    }
-                    Console.Write(numbers[i, j] + " ");
-                }
-                Console.WriteLine();
+                Console.WriteLine(arrayNumber[arrayNumber.Length - 1]);
             }
-
-            Console.WriteLine($"Самое большое число {maximumNumber}");
             Console.ReadKey();
-
         }
     }
 }
