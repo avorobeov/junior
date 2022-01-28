@@ -16,9 +16,8 @@ namespace junior
                               {4, 2, 3, 4 ,5, 6, 7, 8, 9},
                               {3, 2, 3, 4 ,5, 6, 7, 8, 9},
                               {8, 2, 3, 4 ,5, 6, 7, 8, 9}};
-
             int sumNumbers = 0;
-            int firstColumnProduct = 0;
+            int firstColumnProduct = 1;
 
             for (int i = 0; i < numbers.GetLength(0); i++)
             {
@@ -36,8 +35,7 @@ namespace junior
             }
             Console.WriteLine();
 
-            firstColumnProduct = numbers[0, 0];
-            for (int i = 1; i < numbers.GetLength(0); i++)
+            for (int i = 0; i < numbers.GetLength(0); i++)
             {
                 firstColumnProduct *= numbers[i, 0];
             }
