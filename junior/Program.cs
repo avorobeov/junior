@@ -11,37 +11,43 @@ namespace junior
 
         static void Main(string[] args)
         {
-            int[,] numbers = {{6, 2, 3, 4 ,5, 6, 7, 8, 9},
-                              {3, 2, 3, 4 ,5, 6, 7, 8, 9},
-                              {4, 2, 3, 4 ,5, 6, 7, 8, 9},
-                              {3, 2, 3, 4 ,5, 6, 7, 8, 9},
-                              {8, 2, 3, 4 ,5, 6, 7, 8, 9}};
-            int sumNumbers = 0;
-            int firstColumnProduct = 1;
+            int[,] arrayNumber = {{1, 2, 3, 6, 55, 66, 77,32,43,43},
+                                  {4, 5, 6, 34, 21, 76, 32,43,66,22},
+                                  {7, 8, 9,12,24,22,23,432,45,432}};
+            int maximumNumber = int.MinValue;
+            int numberColumn = 0;
+            int numberLine = 0;
 
-            for (int i = 0; i < numbers.GetLength(0); i++)
+            Console.WriteLine("Исходная матрица");
+            for (int i = 0; i < arrayNumber.GetLength(0); i++)
             {
-                for (int j = 0; j < numbers.GetLength(1); j++)
+                for (int j = 0; j < arrayNumber.GetLength(1); j++)
                 {
-                    Console.Write(numbers[i, j]);
+                    Console.Write(arrayNumber[i, j] + " ");
+                    if (maximumNumber <= arrayNumber[i, j])
+                    {
+                        maximumNumber = arrayNumber[i, j];
+                    }
                 }
                 Console.WriteLine();
             }
 
-            for (int j = 0; j < numbers.GetLength(1); j++)
+            Console.WriteLine("Изменённая матрица");
+            for (int i = 0; i < arrayNumber.GetLength(0); i++)
             {
-                Console.Write(numbers[1, j]);
-                sumNumbers += numbers[1, j];
+                for (int j = 0; j < arrayNumber.GetLength(1); j++)
+                {
+                    if (maximumNumber == arrayNumber[i, j])
+                    {
+                        arrayNumber[i, j] = 0;
+                    }
+                    Console.Write(arrayNumber[i, j] + " ");
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
 
-            for (int i = 0; i < numbers.GetLength(0); i++)
-            {
-                firstColumnProduct *= numbers[i, 0];
-            }
-            Console.WriteLine($"Сума второй строки: {sumNumbers} произведение первого столбца {firstColumnProduct}");
+            Console.WriteLine($"Самое большое число {maximumNumber}");
             Console.ReadKey();
-
 
         }
     }
