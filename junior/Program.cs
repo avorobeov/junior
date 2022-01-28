@@ -11,7 +11,16 @@ namespace junior
 
         static void Main(string[] args)
         {
-            int[] arrayNumber = { 12, 43, 35, 30, 34, 23, 23, 65, 67, 98, 54, 34, 56, 335, 45, 34, 23, 45, 56, 54, 12, 45, 76, 34, 98, 14, 67, 45, 43, 56 };
+            Random random = new Random();
+            int[] arrayNumber = new int[30];
+
+            for (int i = 0; i < arrayNumber.Length; i++)
+            {
+                arrayNumber[i] = random.Next(1, 1000);
+                Console.Write($"{arrayNumber[i]} ");
+            }
+
+            Console.WriteLine("\n\nЛокальные максимумы \n");
 
             if (arrayNumber[0] > arrayNumber[1])
             {
