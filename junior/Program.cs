@@ -74,7 +74,7 @@ namespace junior
                             Console.Write("Ведите фамилию того человека которого хотите найти:");
                             userInput = Console.ReadLine();
 
-                            index = IndexSearch(userData, userInput);
+                            index = SearchIndex(userData, userInput);
 
                             if (index > -1)
                             {
@@ -140,7 +140,7 @@ namespace junior
             }
             dossier = reducedArray;
         }
-        static int IndexSearch(string[] array, string searchLine)
+        static int SearchIndex(string[] array, string searchLine)
         {
             for (int i = 0; i < array.Length; i++)
             {
