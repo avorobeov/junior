@@ -41,7 +41,7 @@ namespace junior
                         Console.Write("Ведите должность: ");
                         userInput = Console.ReadLine();
                         ArrayExpansion(ref userPosition);
-                        userPosition[userData.Length - 1] = userInput;
+                        userPosition[userPosition.Length - 1] = userInput;
                         break;
                     case 2:
                         if (userData.Length > 0 && userPosition.Length > 0)
