@@ -11,40 +11,54 @@ namespace junior
 
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int[] arrayNumber = new int[30];
+            int[] numbers = new int[0];
+            string usersCommand = "";
+            bool isExit = false;
 
-            for (int i = 0; i < arrayNumber.Length; i++)
+            while (isExit == false)
             {
-                arrayNumber[i] = random.Next(1, 1000);
-                Console.Write($"{arrayNumber[i]} ");
-            }
+                Console.WriteLine("Ведите число или команду \n " +
+                                  "1)Считает сумму введенных вами чисел (sum) \n " +
+                                  "2)Выход из программы (exit) \n " +
+                                  "3)Для добавления чисел для подсчёта просто ведите число \n\n\n");
 
-            Console.WriteLine("\n\nЛокальные максимумы \n");
-
-            if (arrayNumber[0] > arrayNumber[1])
-            {
-                Console.WriteLine(arrayNumber[0]);
-            }
-
-            for (int i = 1; i < arrayNumber.Length; i++)
-            {
-                if (arrayNumber.Length - 1 != i)
+                usersCommand = Console.ReadLine();
+                switch (usersCommand)
                 {
-                    if (arrayNumber[i] > arrayNumber[i - 1] && arrayNumber[i] > arrayNumber[i + 1])
-                    {
+                    case "sum":
+                        int sumNumbers = 0;
+                       
+                        foreach (int number in numbers)
                         {
-                            Console.WriteLine(arrayNumber[i]);
+                            sumNumbers += number;
                         }
-                    }
+                       
+                        Console.WriteLine($"Сумма всех чисел {sumNumbers}\n");
+                        sumNumbers = 0;
+                        break;
+                    case "exit":
+                        isExit = true;
+                        break;
+                    default:
+                        int[] arrayExpander = new int[numbers.Length + 1];
+
+                        if (numbers.Length != 0)
+                        {
+                            for (int i = 0; i < numbers.Length; i++)
+                            {
+                                arrayExpander[i] = numbers[i];
+                            }
+                            arrayExpander[arrayExpander.Length - 1] = Convert.ToInt32(usersCommand);
+                            numbers = arrayExpander;
+                        }
+                        else
+                        {
+                            arrayExpander[0] = Convert.ToInt32(usersCommand);
+                            numbers = arrayExpander;
+                        }
+                        break;
                 }
             }
-
-            if (arrayNumber[arrayNumber.Length - 1] > arrayNumber[arrayNumber.Length - 2])
-            {
-                Console.WriteLine(arrayNumber[arrayNumber.Length - 1]);
-            }
-            Console.ReadKey();
         }
     }
 }
