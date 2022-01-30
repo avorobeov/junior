@@ -11,26 +11,47 @@ namespace junior
 
         static void Main(string[] args)
         {
-            WrateBar(50, 20, 10, 10);
-            Console.ReadKey();
-        }
-        static void WrateBar(int percent,int size, int positionsX, int positionsY, ConsoleColor color = ConsoleColor.Red)
-        {
-            Console.ForegroundColor = color;
-            Console.SetCursorPosition(positionsX, positionsY);
-            int fillingPercentage = Convert.ToInt32(((float)size / 100) * percent);
-            int emptyCells = size - fillingPercentage;
+            string userInput;
+            int numberСonverted =0;
 
-            Console.Write('[');
-            for (int i = 0; i < fillingPercentage; i++)
+            bool isExit = false;
+            bool isNumber;
+
+            while (isExit  == false)
             {
-                Console.Write('#');
+                Console.Write("Ведите число для конвертации:");
+                userInput = Console.ReadLine();
+
+                isNumber = ConvertNumber(userInput, ref numberСonverted);
+
+                if (isNumber)
+                {
+                    Console.WriteLine($"Строку получилось конвертировать вот её значение {numberСonverted}");
+                    isExit = true;
+                }
+                else
+                {
+                    Console.WriteLine("Конвертация не удалось вести строку ещё раз");
+                }
             }
-            for (int i = 0; i < emptyCells; i++)
+            Console.ReadLine();
+        }
+        static bool ConvertNumber(string inputString, ref int outputNumber )
+        {
+            int number;
+            bool isNumber;
+
+            isNumber = int.TryParse(inputString, out number);
+          
+            if (isNumber)
             {
-                Console.Write('_');
+                outputNumber = number;
+                return true;
             }
-            Console.Write(']');
+            else
+            {
+                return false;
+            }
         }
     }
 }

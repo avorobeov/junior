@@ -11,44 +11,52 @@ namespace junior
 
         static void Main(string[] args)
         {
-            int[,] arrayNumber = {{1, 2, 3, 6, 55, 66, 77},
-                                  {4, 5, 6, 34, 21, 76, 32},
-                                  {7, 8, 9,12,24,22,23}};
-            int maximumNumber = int.MinValue;
-            int numberColumn = 0;
-            int numberLine = 0;
+            int personX = 0, personY = 0;
+            char[,] map = ReadMap("map1",ref personX,ref personY);
+           
 
-            Console.WriteLine("Исходная матрица");
-            for (int i = 0; i < arrayNumber.GetLength(0); i++)
-            {
-                for (int j = 0; j < arrayNumber.GetLength(1); j++)
-                {
-                    Console.Write(arrayNumber[i, j] + " ");
-                    if (maximumNumber <= arrayNumber[i, j])
-                    {
-                        maximumNumber = arrayNumber[i, j];
-                        numberColumn = i;
-                        numberLine = j;
-                    }
-                }
-                Console.WriteLine();
-            }
+            DrawMap(map);
+            Console.SetCursorPosition(personY, personX);
 
-            arrayNumber[numberColumn, numberLine] = 0;
 
-            Console.WriteLine("Изменённая матрица");
-            for (int i = 0; i < arrayNumber.GetLength(0); i++)
-            {
-                for (int j = 0; j < arrayNumber.GetLength(1); j++)
-                {
-                    Console.Write(arrayNumber[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-
-            Console.WriteLine($"Самое большое число {maximumNumber}");
             Console.ReadKey();
 
         }
+        static void DrawMap(char[,] map)
+        {
+            for (int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+                    Console.Write(map[i, j]);
+                }
+                Console.WriteLine();
+            }
+        }
+        static char[,] ReadMap(string nameMap,ref int personX,ref int personY)
+        {
+            string [] newFile = System.IO.File.ReadAllLines($"Maps\\{nameMap}.txt");
+            char[,] map = new char[newFile.Length, newFile[0].Length];
+
+            for (int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+
+                    if (newFile[i][j] == '%')
+                    {
+                        personX = i;
+                        personY = j;
+                        map[i, j] = '@';
+                    }
+                    else
+                    {
+                        map[i, j] = newFile[i][j];
+                    }
+                }
+            }
+            return map;
+        }
+       
     }
 }
