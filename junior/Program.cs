@@ -20,6 +20,7 @@ namespace junior
             Console.SetCursorPosition(positionsX, positionsY);
             int fillingPercentage = Convert.ToInt32(((float)size / 100) * percent);
             int emptyCells = size - fillingPercentage;
+
             Console.Write('[');
             for (int i = 0; i < fillingPercentage; i++)
             {
