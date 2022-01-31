@@ -14,8 +14,11 @@ namespace junior
             Console.CursorVisible = false;
             int personX, personY;
             int personDX = 0, personDY = 0;
+
             string userInputMap;
             char[,] map;
+
+            bool isPlaying = true;
 
             Console.Write("Ведите название карты:");
             userInputMap = Console.ReadLine();
@@ -23,7 +26,6 @@ namespace junior
 
             map = ReadMap(userInputMap, out personX,out personY);
 
-            bool isPlaying = true;
             DrawMap(map);
 
             while (isPlaying == true)
@@ -66,10 +68,6 @@ namespace junior
                     }
                 }
             }
-
-
-            Console.ReadKey();
-
         }
         static void DrawMap(char[,] map)
         {
