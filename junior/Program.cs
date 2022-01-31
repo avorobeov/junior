@@ -24,7 +24,7 @@ namespace junior
             userInputMap = Console.ReadLine();
             Console.Clear();
 
-            map = ReadMap(userInputMap, out personX,out personY);
+            map = ReadMap(userInputMap, out personX, out personY);
 
             DrawMap(map);
 
@@ -32,43 +32,52 @@ namespace junior
             {
                 if (Console.KeyAvailable)
                 {
-                    ConsoleKeyInfo key = Console.ReadKey(true);
-                    switch (key.Key)
-                    {
-                        case ConsoleKey.UpArrow:
-                            personDX = -1;
-                            personDY = 0;
-                            break;
-                        case ConsoleKey.DownArrow:
-                            personDX = +1;
-                            personDY = 0;
-                            break;
-                        case ConsoleKey.LeftArrow:
-                            personDX = 0;
-                            personDY = -1;
-                            break;
-                        case ConsoleKey.RightArrow:
-                            personDX = 0;
-                            personDY = +1;
-                            break;
-                        case ConsoleKey.Escape:
-                            isPlaying = false;
-                            break;
-                    }
-                    if (map[personX + personDX, personY + personDY] != '|')
-                    {
-                        Console.SetCursorPosition(personY, personX);
-                        Console.Write(" ");
-
-                        personX += personDX;
-                        personY += personDY;
-
-                        Console.SetCursorPosition(personY, personX);
-                        Console.Write("@");
-                    }
+                    EnteredPlayerCommands(ref personDX, ref personDY, ref isPlaying);
+                    MovePlayer(ref personX, ref personY, ref personDX, ref personDY, map);
                 }
             }
         }
+        static void MovePlayer(ref int personX, ref int personY, ref int personDX, ref int personDY, char[,] map)
+        {
+            if (map[personX + personDX, personY + personDY] != '|')
+            {
+                Console.SetCursorPosition(personY, personX);
+                Console.Write(" ");
+
+                personX += personDX;
+                personY += personDY;
+
+                Console.SetCursorPosition(personY, personX);
+                Console.Write("@");
+            }
+        }
+        static void EnteredPlayerCommands(ref int personDX, ref int personDY, ref bool isPlaying)
+        {
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    personDX = -1;
+                    personDY = 0;
+                    break;
+                case ConsoleKey.DownArrow:
+                    personDX = +1;
+                    personDY = 0;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    personDX = 0;
+                    personDY = -1;
+                    break;
+                case ConsoleKey.RightArrow:
+                    personDX = 0;
+                    personDY = +1;
+                    break;
+                case ConsoleKey.Escape:
+                    isPlaying = false;
+                    break;
+            }
+        }
+        
         static void DrawMap(char[,] map)
         {
             for (int i = 0; i < map.GetLength(0); i++)
@@ -80,11 +89,11 @@ namespace junior
                 Console.WriteLine();
             }
         }
-        static char[,] ReadMap(string nameMap,out int personX,out int personY)
+        static char[,] ReadMap(string nameMap, out int personX, out int personY)
         {
             personX = 0;
             personY = 0;
-            string [] newFile = System.IO.File.ReadAllLines($"Maps\\{nameMap}.txt");
+            string[] newFile = System.IO.File.ReadAllLines($"Maps\\{nameMap}.txt");
             char[,] map = new char[newFile.Length, newFile[0].Length];
 
             for (int i = 0; i < map.GetLength(0); i++)
@@ -106,6 +115,5 @@ namespace junior
             }
             return map;
         }
-       
     }
 }
