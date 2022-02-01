@@ -32,8 +32,11 @@ namespace junior
             {
                 if (Console.KeyAvailable)
                 {
-                    EnteredPlayerCommands(ref personDX, ref personDY, ref isPlaying);
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+
+                    ChangeDirection(ref personDX, ref personDY, key);
                     MovePlayer(ref personX, ref personY, ref personDX, ref personDY, map);
+                    Exit(ref isPlaying, key);
                 }
             }
         }
@@ -51,9 +54,9 @@ namespace junior
                 Console.Write("@");
             }
         }
-        static void EnteredPlayerCommands(ref int personDX, ref int personDY, ref bool isPlaying)
+
+        static void ChangeDirection(ref int personDX, ref int personDY, ConsoleKeyInfo key)
         {
-            ConsoleKeyInfo key = Console.ReadKey(true);
             switch (key.Key)
             {
                 case ConsoleKey.UpArrow:
@@ -72,12 +75,9 @@ namespace junior
                     personDX = 0;
                     personDY = +1;
                     break;
-                case ConsoleKey.Escape:
-                    isPlaying = false;
-                    break;
             }
         }
-        
+
         static void DrawMap(char[,] map)
         {
             for (int i = 0; i < map.GetLength(0); i++)
@@ -114,6 +114,13 @@ namespace junior
                 }
             }
             return map;
+        }
+        static void Exit(ref bool isPlaying, ConsoleKeyInfo key)
+        {
+            if (ConsoleKey.Escape == key.Key)
+            {
+                isPlaying = false;
+            }
         }
     }
 }
