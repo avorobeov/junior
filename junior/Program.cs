@@ -39,11 +39,11 @@ namespace junior
             }
         }
 
-        static string SeekMeaning(Dictionary<string, string> Dictionary, string input)
+        static string SeekMeaning(Dictionary<string, string> Dictionary, string querySearch)
         {
             foreach (var item in Dictionary)
             {
-                if (item.Key.ToLower() == input.ToLower())
+                if (item.Key.ToLower() == querySearch.ToLower())
                 {
                     return $"Ответ на ваш запрос: {item.Value}";
                 }
