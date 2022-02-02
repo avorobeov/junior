@@ -11,39 +11,90 @@ namespace junior
 
         static void Main(string[] args)
         {
+            List<int> MemorizeNumbers = new List<int>();
+            string inputUser;
 
-            Queue<int> shoppingList = new Queue<int>();
+            bool isExit = false;
 
-            shoppingList = FillQueue(shoppingList);
-            int amountFunds = 0;
+            WriteText(4);
 
-            while (shoppingList.Count != 0)
+            while (isExit == false)
             {
-                CountPurchases(ref amountFunds, shoppingList);
-                WrateResult(amountFunds, shoppingList.Count);
-            }
+                WriteText(3);
+                inputUser = Console.ReadLine();
+                GetCommand(inputUser, ref MemorizeNumbers, ref isExit);
 
+
+            }
         }
-        static Queue<int> FillQueue(Queue<int> shoppingList, int purchasePriceMin = 50, int purchasePriceMax = 1000, int numberBuyers = 10)
+        static void GetCommand(string input, ref List<int> MemorizeNumbers, ref bool isExit)
         {
-            Random random = new Random();
-            for (int i = 0; i < numberBuyers; i++)
+            switch (input)
             {
-                shoppingList.Enqueue(random.Next(purchasePriceMin, purchasePriceMax));
+                case "sum":
+                    int result = CountNumbers(MemorizeNumbers);
+                    WriteText(5, result);
+                    break;
+                case "exit":
+                    isExit = true;
+                    break;
+                default:
+                    AddObject(input, ref MemorizeNumbers);
+                    break;
             }
-            return shoppingList;
-
         }
-        static void CountPurchases(ref int amountFunds, Queue<int> shoppingList)
+        static int CountNumbers(List<int> MemorizeNumbers)
         {
-            amountFunds += shoppingList.Dequeue();
+            int result = 0;
+            foreach (var item in MemorizeNumbers)
+            {
+                result += item;
+            }
+            return result;
         }
-        static void WrateResult(int balance, int countPeopleLine)
+        static void AddObject(string input, ref List<int> MemorizeNumbers)
         {
-            Console.WriteLine($"На вашем счету:{balance}");
-            Console.WriteLine($"Количество человек в очереди: {countPeopleLine}");
-            Console.ReadKey();
-            Console.Clear();
+            int result;
+            if (ThisNumber(input, out result))
+            {
+                MemorizeNumbers.Add(result);
+                WriteText(1);
+            }
+            else
+            {
+                WriteText(2);
+            }
+        }
+        static bool ThisNumber(string str, out int result)
+        {
+            if (Int32.TryParse(str, out result))
+            {
+                return true;
+            }
+            return false;
+        }
+        static void WriteText(int number, int result = 0)
+        {
+            switch (number)
+            {
+                case 1:
+                    Console.WriteLine("Число успешно добавлено");
+                    break;
+                case 2:
+                    Console.WriteLine("Это строка не является числом");
+                    break;
+                case 3:
+                    Console.WriteLine("Ведите, пожалуйста, число");
+                    break;
+                case 4:
+                    Console.WriteLine("Для добавления числа в базу ведите его и нажмите Enter \n" +
+                                      "Для подсчёта чисел ведите команду sum \n" +
+                                      "Для выхода ведите команду Exit");
+                    break;
+                case 5:
+                    Console.WriteLine($"Сума ведённых вами чисел: {result}");
+                    break;
+            }
         }
 
     }
