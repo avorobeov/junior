@@ -11,35 +11,46 @@ namespace junior
 
         static void Main(string[] args)
         {
-            int[] nambers = {1,2,3,4,5,6,7,8,9,10 };
+            Dictionary<string, string> talkDictionary = new Dictionary<string, string>();
 
-            nambers = Shuffele(nambers);
+            string inputUser;
 
-        }
-        static int [] Shuffele(int[] array)
-        {
-            Random random = new Random();
-            int elementMoving = 0;
-            int objectOne;
-            int objectTwo;
+            talkDictionary.Add("слово", "Единица языка, служащая длянаименования понятий, предметов, лиц, действий, состояний, признаков,связей, отношений, оценок. Знаменательные и служебные слова. Происхождениеслов. С. в с. (о переводе, пересказе: буквально).");
+            talkDictionary.Add("результат", "РЕЗУЛЬТАТ, -а, м. 1. То, что получено в завершение какой-н.деятельности, работы, итог. Результаты исследования. Результаты конкурса. 2.Показатель мастерства (обычно спортивного). Р. пловца. Р. в беге \"а 100м.Улучшить свои результаты.Лучшийр.дня. * В результате чего, предлог с род.п. - вследствие чего - н., из - за чего - н.Ущерб в результате аварии.Пострадалв результате неосторожности.В результате того что, союз(книжн.) - вследствие того что, из - за того что.Всегда опаздывает, в результате тогочто не может рассчитать время.А(и) в результате, в знач.союза - и потому, и вследствие этого.Не рассчитали время, а(и) в результате опоздали.IIприл.результатный, -ая, -ое.");
 
-            for (int i = 0; i < array.Length)
+            bool isExit = false;
+
+            while (isExit == false)
             {
-                elementMoving = random.Next(0, array.Length);
+                Console.WriteLine("Для выхода ведите команду Exit");
+                Console.WriteLine("Ведите слово для получения его значения:");
+                inputUser = Console.ReadLine();
 
-                if (i != elementMoving)
+                switch (inputUser)
                 {
-                    objectOne = array[i];
-                    objectTwo = array[elementMoving];
-
-                    array[i] = objectTwo;
-                    array[elementMoving] = objectOne;
-
-                    i++;
+                    case "Exit":
+                        isExit = true;
+                        break;
+                    default:
+                        SeekMeaning(talkDictionary, inputUser);
+                        break;
                 }
             }
-            return array;
         }
-    
+
+        static void SeekMeaning(Dictionary<string, string> Dictionary, string input)
+        {
+            foreach (var item in Dictionary)
+            {
+                if (item.Key.ToLower() == input.ToLower())
+                {
+                    Console.WriteLine($"Ответ на ваш запрос: {item.Value}");
+                }
+            }
+
+            Console.WriteLine("Такого слова нет в базе: ");
+        }
+
+
     }
 }
