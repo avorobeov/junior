@@ -11,28 +11,39 @@ namespace junior
 
         static void Main(string[] args)
         {
-            Random random = new Random();
+
             Queue<int> shoppingList = new Queue<int>();
 
+            shoppingList = FillQueue(shoppingList);
             int amountFunds = 0;
-            for (int i = 0; i < 100; i++)
-            {
-                shoppingList.Enqueue(random.Next(50, 1000));
-            }
 
-            for (int i = 0; i < shoppingList.Count; i++)
+            while (shoppingList.Count != 0)
             {
-                amountFunds += shoppingList.Dequeue();
+                CountPurchases(ref amountFunds, shoppingList);
                 WrateResult(amountFunds, shoppingList.Count);
-                Console.ReadKey();
-                Console.Clear();
             }
 
+        }
+        static Queue<int> FillQueue(Queue<int> shoppingList, int purchasePriceMin = 50, int purchasePriceMax = 1000, int numberBuyers = 10)
+        {
+            Random random = new Random();
+            for (int i = 0; i < numberBuyers; i++)
+            {
+                shoppingList.Enqueue(random.Next(purchasePriceMin, purchasePriceMax));
+            }
+            return shoppingList;
+
+        }
+        static void CountPurchases(ref int amountFunds, Queue<int> shoppingList)
+        {
+            amountFunds += shoppingList.Dequeue();
         }
         static void WrateResult(int balance, int countPeopleLine)
         {
             Console.WriteLine($"На вашем счету:{balance}");
             Console.WriteLine($"Количество человек в очереди: {countPeopleLine}");
+            Console.ReadKey();
+            Console.Clear();
         }
 
     }
