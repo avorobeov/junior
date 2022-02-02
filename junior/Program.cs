@@ -19,24 +19,23 @@ namespace junior
         static int [] Shuffele(int[] array)
         {
             Random random = new Random();
-            int elementNumber = 0;
             int elementMoving = 0;
             int objectOne;
             int objectTwo;
 
-            while (elementNumber != array.Length)
+            for (int i = 0; i < array.Length)
             {
                 elementMoving = random.Next(0, array.Length);
 
-                if (elementNumber != elementMoving)
+                if (i != elementMoving)
                 {
-                    objectOne = array[elementNumber];
+                    objectOne = array[i];
                     objectTwo = array[elementMoving];
 
-                    array[elementNumber] = objectTwo;
+                    array[i] = objectTwo;
                     array[elementMoving] = objectOne;
 
-                    elementNumber++;
+                    i++;
                 }
             }
             return array;
