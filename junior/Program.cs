@@ -41,12 +41,9 @@ namespace junior
 
         static string SeekMeaning(Dictionary<string, string> Dictionary, string querySearch)
         {
-            foreach (var item in Dictionary)
+            if (Dictionary.ContainsKey(querySearch.ToLower()))
             {
-                if (item.Key.ToLower() == querySearch.ToLower())
-                {
-                    return $"Ответ на ваш запрос: {item.Value}";
-                }
+                return $"Ответ на ваш запрос: {Dictionary[querySearch.ToLower()]}";
             }
 
             return "Такого слова нет в базе: ";
