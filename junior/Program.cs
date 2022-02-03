@@ -11,30 +11,56 @@ namespace junior
 
         static void Main(string[] args)
         {
+            List<int> memorizeNumbers = new List<int>();
+            string inputUser;
 
-            Queue<int> shoppingList = new Queue<int>();
+            bool isExit = false;
 
-            FillQueue(shoppingList);
-            int amountFunds = 0;
-
-            while (shoppingList.Count != 0)
+            Console.WriteLine("Для добавления числа в базу ведите его и нажмите Enter \n" +
+                                      "Для подсчёта чисел ведите команду sum \n" +
+                                      "Для выхода ведите команду exit");
+            while (isExit == false)
             {
-                amountFunds += shoppingList.Dequeue();
-                Console.WriteLine($"На вашем счету:{amountFunds}");
-                Console.WriteLine($"Количество человек в очереди: {shoppingList.Count}");
-                Console.ReadKey();
-                Console.Clear();
-            }
+                Console.WriteLine("Ведите, пожалуйста, число");
+                inputUser = Console.ReadLine();
+                switch (inputUser)
+                {
+                    case "sum":
+                        int result = SumNumbers(memorizeNumbers);
+                        Console.WriteLine($"Сума ведённых вами чисел: {result}");
+                        break;
+                    case "exit":
+                        isExit = true;
+                        break;
+                    default:
+                        AttemptToAdd(inputUser, memorizeNumbers);
+                        break;
+                }
 
+            }
         }
-        static void FillQueue(Queue<int> shoppingList, int purchasePriceMin = 50, int purchasePriceMax = 1000, int numberBuyers = 10)
-        {
-            Random random = new Random();
-            for (int i = 0; i < numberBuyers; i++)
-            {
-                shoppingList.Enqueue(random.Next(purchasePriceMin, purchasePriceMax));
-            }
 
+        static int SumNumbers(List<int> MemorizeNumbers)
+        {
+            int result = 0;
+            foreach (var numbers in MemorizeNumbers)
+            {
+                result += numbers;
+            }
+            return result;
+        }
+        static void AttemptToAdd(string input, List<int> memorizeNumbers)
+        {
+            int result;
+            if (Int32.TryParse(input, out result))
+            {
+                memorizeNumbers.Add(Convert.ToInt32(input));
+                Console.WriteLine("Число успешно добавлено");
+            }
+            else
+            {
+                Console.WriteLine("Это строка не является числом");
+            }
         }
     }
 }
