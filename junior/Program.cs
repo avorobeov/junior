@@ -11,91 +11,64 @@ namespace junior
 
         static void Main(string[] args)
         {
-            List<int> MemorizeNumbers = new List<int>();
+            List<int> memorizeNumbers = new List<int>();
             string inputUser;
 
             bool isExit = false;
 
-            WriteText(4);
-
+            Console.WriteLine("Для добавления числа в базу ведите его и нажмите Enter \n" +
+                                      "Для подсчёта чисел ведите команду sum \n" +
+                                      "Для выхода ведите команду exit");
             while (isExit == false)
             {
-                WriteText(3);
+                Console.WriteLine("Ведите, пожалуйста, число");
                 inputUser = Console.ReadLine();
-                GetCommand(inputUser, ref MemorizeNumbers, ref isExit);
-
+                switch (inputUser)
+                {
+                    case "sum":
+                        int result = CountNumbers(memorizeNumbers);
+                        Console.WriteLine($"Сума ведённых вами чисел: {result}");
+                        break;
+                    case "exit":
+                        isExit = true;
+                        break;
+                    default:
+                        AddObject(inputUser, memorizeNumbers);
+                        break;
+                }
 
             }
         }
-        static void GetCommand(string input, ref List<int> MemorizeNumbers, ref bool isExit)
-        {
-            switch (input)
-            {
-                case "sum":
-                    int result = CountNumbers(MemorizeNumbers);
-                    WriteText(5, result);
-                    break;
-                case "exit":
-                    isExit = true;
-                    break;
-                default:
-                    AddObject(input, ref MemorizeNumbers);
-                    break;
-            }
-        }
+
         static int CountNumbers(List<int> MemorizeNumbers)
         {
             int result = 0;
-            foreach (var item in MemorizeNumbers)
+            foreach (var numbers in MemorizeNumbers)
             {
-                result += item;
+                result += numbers;
             }
             return result;
         }
-        static void AddObject(string input, ref List<int> MemorizeNumbers)
+        static void AddObject(string input,List<int> MemorizeNumbers)
         {
-            int result;
-            if (ThisNumber(input, out result))
+            if (IsNumber(input))
             {
-                MemorizeNumbers.Add(result);
-                WriteText(1);
+                MemorizeNumbers.Add(Convert.ToInt32(input));
+                Console.WriteLine("Число успешно добавлено");
             }
             else
             {
-                WriteText(2);
+                Console.WriteLine("Это строка не является числом");
             }
         }
-        static bool ThisNumber(string str, out int result)
+        static bool IsNumber(string str)
         {
+            int result;
             if (Int32.TryParse(str, out result))
             {
                 return true;
             }
             return false;
         }
-        static void WriteText(int number, int result = 0)
-        {
-            switch (number)
-            {
-                case 1:
-                    Console.WriteLine("Число успешно добавлено");
-                    break;
-                case 2:
-                    Console.WriteLine("Это строка не является числом");
-                    break;
-                case 3:
-                    Console.WriteLine("Ведите, пожалуйста, число");
-                    break;
-                case 4:
-                    Console.WriteLine("Для добавления числа в базу ведите его и нажмите Enter \n" +
-                                      "Для подсчёта чисел ведите команду sum \n" +
-                                      "Для выхода ведите команду Exit");
-                    break;
-                case 5:
-                    Console.WriteLine($"Сума ведённых вами чисел: {result}");
-                    break;
-            }
-        }
-
     }
 }
