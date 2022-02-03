@@ -54,7 +54,7 @@ namespace junior
             int result;
             if (Int32.TryParse(input, out result))
             {
-                memorizeNumbers.Add(Convert.ToInt32(input));
+                memorizeNumbers.Add(result);
                 Console.WriteLine("Число успешно добавлено");
             }
             else
