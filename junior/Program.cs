@@ -26,21 +26,21 @@ namespace junior
                 switch (inputUser)
                 {
                     case "sum":
-                        int result = CountNumbers(memorizeNumbers);
+                        int result = SumNumbers(memorizeNumbers);
                         Console.WriteLine($"Сума ведённых вами чисел: {result}");
                         break;
                     case "exit":
                         isExit = true;
                         break;
                     default:
-                        AddObject(inputUser, memorizeNumbers);
+                        AttemptToAdd(inputUser, memorizeNumbers);
                         break;
                 }
 
             }
         }
 
-        static int CountNumbers(List<int> MemorizeNumbers)
+        static int SumNumbers(List<int> MemorizeNumbers)
         {
             int result = 0;
             foreach (var numbers in MemorizeNumbers)
@@ -49,26 +49,18 @@ namespace junior
             }
             return result;
         }
-        static void AddObject(string input,List<int> MemorizeNumbers)
+        static void AttemptToAdd(string input, List<int> memorizeNumbers)
         {
-            if (IsNumber(input))
+            int result;
+            if (Int32.TryParse(input, out result))
             {
-                MemorizeNumbers.Add(Convert.ToInt32(input));
+                memorizeNumbers.Add(Convert.ToInt32(input));
                 Console.WriteLine("Число успешно добавлено");
             }
             else
             {
                 Console.WriteLine("Это строка не является числом");
             }
-        }
-        static bool IsNumber(string str)
-        {
-            int result;
-            if (Int32.TryParse(str, out result))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }
