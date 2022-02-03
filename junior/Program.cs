@@ -33,7 +33,7 @@ namespace junior
                         isExit = true;
                         break;
                     default:
-                        AttemptToAdd(inputUser, memorizeNumbers);
+                        AttemptAdd(inputUser, memorizeNumbers);
                         break;
                 }
 
@@ -49,7 +49,7 @@ namespace junior
             }
             return result;
         }
-        static void AttemptToAdd(string input, List<int> memorizeNumbers)
+        static void AttemptAdd(string input, List<int> memorizeNumbers)
         {
             int result;
             if (Int32.TryParse(input, out result))
