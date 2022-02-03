@@ -11,56 +11,56 @@ namespace junior
 
         static void Main(string[] args)
         {
-            List<int> memorizeNumbers = new List<int>();
-            string inputUser;
+            List<string> userData = new List<string>();
+            List<string> position = new List<string>();
+            int userInput;
 
             bool isExit = false;
 
-            Console.WriteLine("Для добавления числа в базу ведите его и нажмите Enter \n" +
-                                      "Для подсчёта чисел ведите команду sum \n" +
-                                      "Для выхода ведите команду exit");
             while (isExit == false)
             {
-                Console.WriteLine("Ведите, пожалуйста, число");
-                inputUser = Console.ReadLine();
-                switch (inputUser)
+                Console.WriteLine("Для добавления досье нажмите 1 \n" +
+                                  "Для вывода списка нажмите 2 \n" +
+                                  "Для удаления досье нажмите 3 \n" +
+                                  "Для выхода нажмите 4 \n");
+                userInput = Convert.ToInt32(Console.ReadLine());
+                switch (userInput)
                 {
-                    case "sum":
-                        int result = SumNumbers(memorizeNumbers);
-                        Console.WriteLine($"Сума ведённых вами чисел: {result}");
+                    case 1:
+                        AddBase(userData, position);
                         break;
-                    case "exit":
+                    case 2:
+                        WrateLine(userData, position);
+                        break;
+                    case 3:
+                        ClearBase(userData, position);
+                        break;
+                    case 4:
                         isExit = true;
                         break;
-                    default:
-                        AttemptAdd(inputUser, memorizeNumbers);
-                        break;
                 }
-
             }
         }
-
-        static int SumNumbers(List<int> MemorizeNumbers)
+        static void AddBase(List<string> userData, List<string> position)
         {
-            int result = 0;
-            foreach (var numbers in MemorizeNumbers)
-            {
-                result += numbers;
-            }
-            return result;
+            Console.WriteLine("Ведите (Фамилию Имя Отчество)");
+            userData.Add(Console.ReadLine());
+            Console.WriteLine("Ведите вашу должность:");
+            position.Add(Console.ReadLine());
         }
-        static void AttemptAdd(string input, List<int> memorizeNumbers)
+        static void WrateLine(List<string> userData, List<string> position)
         {
-            int result;
-            if (Int32.TryParse(input, out result))
+            for (int i = 0; i < userData.Count; i++)
             {
-                memorizeNumbers.Add(result);
-                Console.WriteLine("Число успешно добавлено");
-            }
-            else
-            {
-                Console.WriteLine("Это строка не является числом");
+                Console.WriteLine($"{userData[i]}-{position[i]}");
             }
         }
+        static void ClearBase(List<string> userData, List<string> position)
+        {
+            userData.Clear();
+            position.Clear();
+        }
+       
+        
     }
 }
