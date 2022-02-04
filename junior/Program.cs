@@ -13,7 +13,10 @@ namespace junior
         {
             List<string> userData = new List<string>();
             List<string> position = new List<string>();
-            int userInput;
+           
+            string userInput;
+           
+            int teamNumber;
 
             bool isExit = false;
 
@@ -23,22 +26,32 @@ namespace junior
                                   "Для вывода списка нажмите 2 \n" +
                                   "Для удаления досье нажмите 3 \n" +
                                   "Для выхода нажмите 4 \n");
-                userInput = Convert.ToInt32(Console.ReadLine());
-                switch (userInput)
+
+                userInput = Console.ReadLine();
+                AttemptConvert(userInput, out teamNumber);
+
+                switch (teamNumber)
                 {
                     case 1:
+
                         AddBase(userData, position);
+
                         break;
                     case 2:
-                        WrateLine(userData, position);
+
+                        ShowData(userData, position);
+
                         break;
                     case 3:
-                        Console.WriteLine("Ведите порядковый номер юзера которого хотите удалить ");
-                        userInput = Convert.ToInt32(Console.ReadLine());
-                        ClearUser(userData, position, userInput);
+
+                        DeleteUser(userData, position);
+
                         break;
                     case 4:
                         isExit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Введите пожалуйста номер команды которую хотите использовать");
                         break;
                 }
             }
@@ -50,19 +63,44 @@ namespace junior
             Console.WriteLine("Ведите вашу должность:");
             position.Add(Console.ReadLine());
         }
-        static void WrateLine(List<string> userData, List<string> position)
+        static void ShowData(List<string> userData, List<string> position)
         {
             for (int i = 0; i < userData.Count; i++)
             {
                 Console.WriteLine($"{i}){userData[i]}-{position[i]}");
             }
         }
-        static void ClearUser(List<string> userData, List<string> position, int index)
+        static bool AttemptConvert(string input, out int rezult)
         {
-            userData.RemoveAt(index);
-            position.RemoveAt(index);
+
+            if(Int32.TryParse(input, out rezult))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
-       
-        
+        static void DeleteUser(List<string> userData, List<string> position)
+        {
+            string inputUser;
+            int index;
+            Console.WriteLine("Ведите порядковый номер юзера которого хотите удалить ");
+            inputUser = Console.ReadLine();
+            if(AttemptConvert(inputUser, out index))
+            {
+                userData.RemoveAt(index);
+                position.RemoveAt(index);
+                Console.WriteLine("пользователь успешно удалён");
+            }
+            else
+            {
+                Console.WriteLine("пользователя с таким индексом не существует");
+            }
+        }
+
+
     }
 }
