@@ -33,7 +33,9 @@ namespace junior
                         WrateLine(userData, position);
                         break;
                     case 3:
-                        ClearBase(userData, position);
+                        Console.WriteLine("Ведите порядковый номер юзера которого хотите удалить ");
+                        userInput = Convert.ToInt32(Console.ReadLine());
+                        ClearUser(userData, position, userInput);
                         break;
                     case 4:
                         isExit = true;
@@ -52,13 +54,13 @@ namespace junior
         {
             for (int i = 0; i < userData.Count; i++)
             {
-                Console.WriteLine($"{userData[i]}-{position[i]}");
+                Console.WriteLine($"{i}){userData[i]}-{position[i]}");
             }
         }
-        static void ClearBase(List<string> userData, List<string> position)
+        static void ClearUser(List<string> userData, List<string> position, int index)
         {
-            userData.Clear();
-            position.Clear();
+            userData.RemoveAt(index);
+            position.RemoveAt(index);
         }
        
         
