@@ -34,7 +34,7 @@ namespace junior
                 {
                     case 1:
 
-                        AddBase(userData, position);
+                        AddUserToDatabase(userData, position);
 
                         break;
                     case 2:
@@ -44,7 +44,7 @@ namespace junior
                         break;
                     case 3:
 
-                        DeleteUser(userData, position);
+                        DeleteUserFromDatabase(userData, position);
 
                         break;
                     case 4:
@@ -56,7 +56,7 @@ namespace junior
                 }
             }
         }
-        static void AddBase(List<string> userData, List<string> position)
+        static void AddUserToDatabase(List<string> userData, List<string> position)
         {
             Console.WriteLine("Ведите (Фамилию Имя Отчество)");
             userData.Add(Console.ReadLine());
@@ -83,7 +83,7 @@ namespace junior
             }
 
         }
-        static void DeleteUser(List<string> userData, List<string> position)
+        static void DeleteUserFromDatabase(List<string> userData, List<string> position)
         {
             string inputUser;
             int index;
