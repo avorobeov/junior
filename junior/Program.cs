@@ -11,8 +11,8 @@ namespace junior
 
         static void Main(string[] args)
         {
-            List<string> userFullNames = new List<string>();
-            List<string> userPosition = new List<string>();
+            List<string> fullNames = new List<string>();
+            List<string> position = new List<string>();
            
             string userInput;
            
@@ -28,23 +28,24 @@ namespace junior
                                   "Для выхода нажмите 4 \n");
 
                 userInput = Console.ReadLine();
+
                 Int32.TryParse(userInput, out teamNumber);
 
                 switch (teamNumber)
                 {
                     case 1:
 
-                        AddUser(userFullNames, userPosition);
+                        AddUser(fullNames, position);
 
                         break;
                     case 2:
 
-                        ShowData(userFullNames, userPosition);
+                        ShowData(fullNames, position);
 
                         break;
                     case 3:
 
-                        DeleteUser(userFullNames, userPosition);
+                        DeleteUser(fullNames, position);
 
                         break;
                     case 4:
@@ -56,23 +57,25 @@ namespace junior
                 }
             }
         }
-        static void AddUser(List<string> userFullNames, List<string> userPosition)
+        static void AddUser(List<string> fullNames, List<string> position)
         {
             Console.WriteLine("Ведите (Фамилию Имя Отчество)");
-            userFullNames.Add(Console.ReadLine());
+            fullNames.Add(Console.ReadLine());
             Console.WriteLine("Ведите вашу должность:");
-            userPosition.Add(Console.ReadLine());
+            position.Add(Console.ReadLine());
         }
     
-        static void ShowData(List<string> userFullNames, List<string> userPosition)
+        static void ShowData(List<string> fullNames, List<string> position)
         {
-            for (int i = 0; i < userFullNames.Count; i++)
+
+            for (int i = 0; i < fullNames.Count; i++)
             {
-                Console.WriteLine($"{i}){userFullNames[i]}-{userPosition[i]}");
+                Console.WriteLine($"{i}){fullNames[i]}-{position[i]}");
             }
+
         }
 
-        static void DeleteUser(List<string> userFullNames, List<string> userPosition)
+        static void DeleteUser(List<string> fullNames, List<string> position)
         {
             string inputUser;
             int index;
@@ -82,10 +85,10 @@ namespace junior
 
             if (Int32.TryParse(inputUser, out index))
             {
-                if (index <= userFullNames.Count() && index <= userPosition.Count())
+                if (fullNames.Count() >= index && position.Count() >= index)
                 {
-                    userFullNames.RemoveAt(index);
-                    userPosition.RemoveAt(index);
+                    fullNames.RemoveAt(index);
+                    position.RemoveAt(index);
                     Console.WriteLine("пользователь успешно удалён");
                 }
                 else
