@@ -11,8 +11,8 @@ namespace junior
 
         static void Main(string[] args)
         {
-            List<string> userData = new List<string>();
-            List<string> position = new List<string>();
+            List<string> userFullNames = new List<string>();
+            List<string> userPosition = new List<string>();
            
             string userInput;
            
@@ -28,23 +28,23 @@ namespace junior
                                   "Для выхода нажмите 4 \n");
 
                 userInput = Console.ReadLine();
-                AttemptConvert(userInput, out teamNumber);
+                Int32.TryParse(userInput, out teamNumber);
 
                 switch (teamNumber)
                 {
                     case 1:
 
-                        AddUserToDatabase(userData, position);
+                        AddUser(userFullNames, userPosition);
 
                         break;
                     case 2:
 
-                        ShowData(userData, position);
+                        ShowData(userFullNames, userPosition);
 
                         break;
                     case 3:
 
-                        DeleteUserFromDatabase(userData, position);
+                        DeleteUser(userFullNames, userPosition);
 
                         break;
                     case 4:
@@ -56,48 +56,42 @@ namespace junior
                 }
             }
         }
-        static void AddUserToDatabase(List<string> userData, List<string> position)
+        static void AddUser(List<string> userFullNames, List<string> userPosition)
         {
             Console.WriteLine("Ведите (Фамилию Имя Отчество)");
-            userData.Add(Console.ReadLine());
+            userFullNames.Add(Console.ReadLine());
             Console.WriteLine("Ведите вашу должность:");
-            position.Add(Console.ReadLine());
+            userPosition.Add(Console.ReadLine());
         }
-        static void ShowData(List<string> userData, List<string> position)
+    
+        static void ShowData(List<string> userFullNames, List<string> userPosition)
         {
-            for (int i = 0; i < userData.Count; i++)
+            for (int i = 0; i < userFullNames.Count; i++)
             {
-                Console.WriteLine($"{i}){userData[i]}-{position[i]}");
+                Console.WriteLine($"{i}){userFullNames[i]}-{userPosition[i]}");
             }
         }
-        static bool AttemptConvert(string input, out int rezult)
-        {
 
-            if(Int32.TryParse(input, out rezult))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-        static void DeleteUserFromDatabase(List<string> userData, List<string> position)
+        static void DeleteUser(List<string> userFullNames, List<string> userPosition)
         {
             string inputUser;
             int index;
+
             Console.WriteLine("Ведите порядковый номер юзера которого хотите удалить ");
             inputUser = Console.ReadLine();
-            if(AttemptConvert(inputUser, out index))
+
+            if (Int32.TryParse(inputUser, out index))
             {
-                userData.RemoveAt(index);
-                position.RemoveAt(index);
-                Console.WriteLine("пользователь успешно удалён");
-            }
-            else
-            {
-                Console.WriteLine("пользователя с таким индексом не существует");
+                if (index <= userFullNames.Count() && index <= userPosition.Count())
+                {
+                    userFullNames.RemoveAt(index);
+                    userPosition.RemoveAt(index);
+                    Console.WriteLine("пользователь успешно удалён");
+                }
+                else
+                {
+                    Console.WriteLine("пользователя с таким индексом не существует");
+                }
             }
         }
 
