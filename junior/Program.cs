@@ -12,9 +12,11 @@ namespace junior
         static void Main(string[] args)
         {
             Knight knight = new Knight();
+
             Renderer renderer = new Renderer();
-           
+      
             knight.Position(10, 10);
+
             renderer.DrawPlayer(knight.positionX, knight.positionY);
 
             Console.ReadLine();
@@ -22,10 +24,10 @@ namespace junior
 
         class Renderer
         {
-            public void DrawPlayer(int x,int y,char ch = '$')
+            public void DrawPlayer(int positionX, int positionY, char character = '$')
             {
-                Console.SetCursorPosition(x, y);
-                Console.Write(ch);
+                Console.SetCursorPosition(positionX, positionY);
+                Console.Write(character);
             }
         }
         class Knight
@@ -77,10 +79,10 @@ namespace junior
                                   $"Количество брони {_armor}\n" +
                                   $"Количество урона {_damage}");
             }
-            public void Position(int positionX, int positionY)
+            public void Position(int x, int y)
             {
-                this.positionX = positionX;
-                this.positionY = positionY;
+                positionX = x;
+                positionY = y;
             }
         }
     }
