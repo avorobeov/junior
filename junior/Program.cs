@@ -11,19 +11,12 @@ namespace junior
 
         static void Main(string[] args)
         {
-            int knightPositionX;
-            int knightPositionY;
-
             Knight knight = new Knight();
 
             Renderer renderer = new Renderer();
 
             knight.SetPosition(10, 10);
-
-            knightPositionX = knight.PositionX;
-            knightPositionY = knight.PositionY;
-
-            renderer.DrawPlayer(knightPositionX, knightPositionY);
+            renderer.DrawPlayer(knight.PositionX, knight.PositionY);
 
             Console.ReadLine();
         }
