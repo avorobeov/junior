@@ -56,6 +56,7 @@ namespace junior
                 _positionX = value;
             }
         }
+      
         public int PositionY
         {
             get
@@ -68,24 +69,28 @@ namespace junior
                 _positionY = value;
             }
         }
+      
         public Knight(int health, int armor, int damage)
         {
             _health = health;
             _armor = armor;
             _damage = damage;
         }
+      
         public Knight()
         {
             _health = 150;
             _armor = 30;
             _damage = 25;
         }
+      
         public void ShowInfo()
         {
             Console.WriteLine($"Количество здоровья {_health} \n" +
                               $"Количество брони {_armor}\n" +
                               $"Количество урона {_damage}");
         }
+      
         public void SetPosition(int positionX, int positionY)
         {
             PositionX = positionX;
