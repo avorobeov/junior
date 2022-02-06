@@ -15,7 +15,7 @@ namespace junior
 
             Renderer renderer = new Renderer();
       
-            knight.Position(10, 10);
+            knight.ToPosition(10, 10);
 
             renderer.DrawPlayer(knight.PositionX, knight.PositionY);
 
