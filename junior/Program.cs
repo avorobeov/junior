@@ -17,7 +17,7 @@ namespace junior
       
             knight.Position(10, 10);
 
-            renderer.DrawPlayer(knight.positionX, knight.positionY);
+            renderer.DrawPlayer(knight.PositionX, knight.PositionY);
 
             Console.ReadLine();
         }
@@ -39,7 +39,7 @@ namespace junior
             private int _positionX;
             private int _positionY;
 
-            public int positionX
+            public int PositionX
             {
                 get
                 {
@@ -50,7 +50,7 @@ namespace junior
                     _positionX = value;
                 }
             }
-            public int positionY
+            public int PositionY
             {
                 get
                 {
@@ -81,8 +81,8 @@ namespace junior
             }
             public void Position(int x, int y)
             {
-                positionX = x;
-                positionY = y;
+                PositionX = x;
+                PositionY = y;
             }
         }
     }
