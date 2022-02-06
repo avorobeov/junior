@@ -11,13 +11,18 @@ namespace junior
 
         static void Main(string[] args)
         {
-            Knight knight = new Knight();
+            int knightPositionX;
+            int knightPositionY;
 
+            Knight knight = new Knight();
             Renderer renderer = new Renderer();
       
-            knight.ToPosition(10, 10);
+            knight.SetPosition(10, 10);
 
-            renderer.DrawPlayer(knight.PositionX, knight.PositionY);
+            knightPositionX = knight.PositionX;
+            knightPositionY = knight.PositionY;
+
+            renderer.DrawPlayer(knightPositionX, knightPositionY);
 
             Console.ReadLine();
         }
@@ -79,10 +84,10 @@ namespace junior
                                   $"Количество брони {_armor}\n" +
                                   $"Количество урона {_damage}");
             }
-            public void ToPosition(int x, int y)
+            public void SetPosition(int setPositionX, int SetPositionY)
             {
-                PositionX = x;
-                PositionY = y;
+                PositionX = setPositionX;
+                PositionY = SetPositionY;
             }
         }
     }
