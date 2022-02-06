@@ -11,93 +11,38 @@ namespace junior
 
         static void Main(string[] args)
         {
-            List<string> fullNames = new List<string>();
-            List<string> position = new List<string>();
-           
-            string userInput;
-           
-            int teamNumber;
+            Knight knight = new Knight();
+            knight.ShowInfo();
 
-            bool isExit = false;
+            Console.ReadLine();
+        }
 
-            while (isExit == false)
+        class Knight
+        {
+            private int _health;
+            private int _armor;
+            private int _damage;
+
+            public Knight(int health,int armor,int damage)
             {
-                Console.WriteLine("Для добавления досье нажмите 1 \n" +
-                                  "Для вывода списка нажмите 2 \n" +
-                                  "Для удаления досье нажмите 3 \n" +
-                                  "Для выхода нажмите 4 \n");
-
-                userInput = Console.ReadLine();
-
-                Int32.TryParse(userInput, out teamNumber);
-
-                switch (teamNumber)
-                {
-                    case 1:
-
-                        AddUser(fullNames, position);
-
-                        break;
-                    case 2:
-
-                        ShowData(fullNames, position);
-
-                        break;
-                    case 3:
-
-                        DeleteUser(fullNames, position);
-
-                        break;
-                    case 4:
-                        isExit = true;
-                        break;
-                    default:
-                        Console.WriteLine("Введите пожалуйста номер команды которую хотите использовать");
-                        break;
-                }
+                _health = health;
+                _armor = armor;
+                _damage = damage;
             }
-        }
-        static void AddUser(List<string> fullNames, List<string> position)
-        {
-            Console.WriteLine("Ведите (Фамилию Имя Отчество)");
-            fullNames.Add(Console.ReadLine());
-            Console.WriteLine("Ведите вашу должность:");
-            position.Add(Console.ReadLine());
-        }
-    
-        static void ShowData(List<string> fullNames, List<string> position)
-        {
-
-            for (int i = 0; i < fullNames.Count; i++)
+            public Knight()
             {
-                Console.WriteLine($"{i}){fullNames[i]}-{position[i]}");
+                _health = 150;
+                _armor = 30;
+                _damage = 25;
             }
 
-        }
-
-        static void DeleteUser(List<string> fullNames, List<string> position)
-        {
-            string inputUser;
-            int index;
-
-            Console.WriteLine("Ведите порядковый номер юзера которого хотите удалить ");
-            inputUser = Console.ReadLine();
-
-            if (Int32.TryParse(inputUser, out index))
+            public void ShowInfo()
             {
-                if (fullNames.Count() >= index && position.Count() >= index)
-                {
-                    fullNames.RemoveAt(index);
-                    position.RemoveAt(index);
-                    Console.WriteLine("пользователь успешно удалён");
-                }
-                else
-                {
-                    Console.WriteLine("пользователя с таким индексом не существует");
-                }
+                Console.WriteLine($"Количество здоровья {_health} \n" +
+                                  $"Количество брони {_armor}\n" +
+                                  $"Количество урона {_damage}");
             }
         }
-
-
     }
+
 }
