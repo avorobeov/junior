@@ -89,6 +89,7 @@ namespace junior
         private Player[] _players = new Player[0];
 
         private const int ArrayGrowth = 1;
+
         public bool AddPlaer(Player player)
         {
             Player[] expandArray = new Player[_players.Length + ArrayGrowth];
