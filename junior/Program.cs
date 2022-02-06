@@ -10,13 +10,14 @@ namespace junior
     {
         static void Main(string[] args)
         {
-            PlayerDatabase database = new PlayerDatabase();
+            DataBase database = new DataBase();
 
             database.AddPlaer(new Player(1, "dic", 2, false));
             database.AddPlaer(new Player(2, "dic", 2, false));
-            database.AddPlaer(new Player(3, "dic", 2, false));
 
             database.DeletePlaer(2);
+
+            database.BlockAndUnblock(1, true);
         }
     }
 
@@ -74,7 +75,7 @@ namespace junior
                 _isBlocked = value;
             }
         }
-     
+
         public Player(int index, string username, int lavel, bool isBlocked)
         {
             _index = index;
@@ -82,24 +83,34 @@ namespace junior
             _level = lavel;
             _isBlocked = isBlocked;
         }
+
+        public void Ban(bool solution)
+        {
+            if (solution == true)
+            {
+                IsBlocked = true;
+            }
+            else
+            {
+                IsBlocked = false;
+            }
+        }
     }
 
-    class PlayerDatabase
+    class DataBase
     {
         private Player[] _players = new Player[0];
 
-        private const int ArrayGrowth = 1;
-
         public bool AddPlaer(Player player)
         {
-            Player[] expandArray = new Player[_players.Length + ArrayGrowth];
+            Player[] expandArray = new Player[_players.Length + 1];
 
             for (int i = 0; i < _players.Length; i++)
             {
                 expandArray[i] = _players[i];
             }
 
-            expandArray[expandArray.Length - ArrayGrowth] = player;
+            expandArray[expandArray.Length - 1] = player;
 
             _players = expandArray;
 
@@ -109,7 +120,7 @@ namespace junior
 
         public bool DeletePlaer(int index)
         {
-            Player[] expandArray = new Player[_players.Length - ArrayGrowth];
+            Player[] expandArray = new Player[_players.Length - 1];
 
             if (_players.Length >= index)
             {
@@ -117,13 +128,13 @@ namespace junior
                 {
                     if (_players[i].Index != index)
                     {
-                        if (expandArray.Length > i) 
+                        if (expandArray.Length > i)
                         {
                             expandArray[i] = _players[i];
                         }
                         else
                         {
-                            expandArray[i - ArrayGrowth] = _players[i];
+                            expandArray[i - 1] = _players[i];
                         }
                     }
                 }
@@ -134,8 +145,18 @@ namespace junior
             return true;
         }
 
+        public bool BlockAndUnblock(int index, bool solution)
+        {
+            if (_players.Length >= index)
+            {
+                _players[index].Ban(solution);
 
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
-
-
 }
