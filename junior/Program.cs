@@ -15,6 +15,7 @@ namespace junior
             int knightPositionY;
 
             Knight knight = new Knight();
+
             Renderer renderer = new Renderer();
 
             knight.SetPosition(10, 10);
