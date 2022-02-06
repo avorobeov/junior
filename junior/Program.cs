@@ -27,6 +27,7 @@ namespace junior
             Console.ReadLine();
         }
     }
+  
     class Renderer
     {
         public void DrawPlayer(int positionX, int positionY, char character = '$')
@@ -35,6 +36,7 @@ namespace junior
             Console.Write(character);
         }
     }
+   
     class Knight
     {
         private int _health;
