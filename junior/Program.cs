@@ -115,7 +115,6 @@ namespace junior
             _players = expandArray;
 
             return true;
-
         }
 
         public bool DeletePlaer(int index)
