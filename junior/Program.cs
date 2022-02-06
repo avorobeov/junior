@@ -8,89 +8,52 @@ namespace junior
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            Knight knight = new Knight();
+            PlayerDatabase database = new PlayerDatabase();
 
-            Renderer renderer = new Renderer();
-
-            knight.SetPosition(10, 10);
-            renderer.DrawPlayer(knight.PositionX, knight.PositionY);
-
-            Console.ReadLine();
+            database.AddPlaer(new Player(1, "dic", 2, false));
         }
     }
-  
-    class Renderer
+
+    class Player
     {
-        public void DrawPlayer(int positionX, int positionY, char character = '$')
+        private int _index;
+        private string _username;
+        private int _level;
+        private bool _isBlocked;
+
+        public Player(int index, string username, int lavel, bool isBlocked)
         {
-            Console.SetCursorPosition(positionX, positionY);
-            Console.Write(character);
+            _index = index;
+            _username = username;
+            _level = lavel;
+            _isBlocked = isBlocked;
         }
     }
-   
-    class Knight
+
+    class PlayerDatabase
     {
-        private int _health;
-        private int _armor;
-        private int _damage;
+        private Player[] _players = new Player[0];
 
-        private int _positionX;
-        private int _positionY;
-
-        public int PositionX
+        private const int ArrayGrowth = 1;
+        public void AddPlaer(Player player)
         {
-            get
+            Player[] expandArray = new Player[_players.Length + ArrayGrowth];
+
+            for (int i = 0; i < _players.Length; i++)
             {
-                return _positionX;
+                _players[i] = _players[i];
             }
-       
-            private set
-            {
-                _positionX = value;
-            }
+
+            expandArray[expandArray.Length - ArrayGrowth] = player;
+
+            _players = expandArray;
+
         }
-      
-        public int PositionY
-        {
-            get
-            {
-                return _positionY;
-            }
+
         
-            private set
-            {
-                _positionY = value;
-            }
-        }
-      
-        public Knight(int health, int armor, int damage)
-        {
-            _health = health;
-            _armor = armor;
-            _damage = damage;
-        }
-      
-        public Knight()
-        {
-            _health = 150;
-            _armor = 30;
-            _damage = 25;
-        }
-      
-        public void ShowInfo()
-        {
-            Console.WriteLine($"Количество здоровья {_health} \n" +
-                              $"Количество брони {_armor}\n" +
-                              $"Количество урона {_damage}");
-        }
-      
-        public void SetPosition(int positionX, int positionY)
-        {
-            PositionX = positionX;
-            PositionY = positionY;
-        }
     }
+
+
 }
