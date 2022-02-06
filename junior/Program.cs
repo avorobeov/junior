@@ -79,7 +79,7 @@ namespace junior
                                   $"Количество брони {_armor}\n" +
                                   $"Количество урона {_damage}");
             }
-            public void Position(int x, int y)
+            public void ToPosition(int x, int y)
             {
                 PositionX = x;
                 PositionY = y;
