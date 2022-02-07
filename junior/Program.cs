@@ -124,6 +124,7 @@ namespace junior
             string inputUser;
 
             int index;
+
             Console.WriteLine("Если вы хотите забанить пользователя, нажмите 1 \n" +
                               "Если вы хотите разбанить пользователя, нажмите 2");
             inputUser = Console.ReadLine();
