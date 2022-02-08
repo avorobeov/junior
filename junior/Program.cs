@@ -149,7 +149,7 @@ namespace junior
 
             Int32.TryParse(inputUser, out index);
 
-            database.Block(index);
+            database.Unlock(index);
         }
     }
 
