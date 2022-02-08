@@ -156,9 +156,11 @@ namespace junior
 
     class Player
     {
-        private int _index;
         private string _userName;
+
+        private int _index;
         private int _level;
+
         private bool _isBlocked;
 
         public int Index
