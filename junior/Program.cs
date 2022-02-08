@@ -140,7 +140,7 @@ namespace junior
 
                 Console.WriteLine("Пользователь заблокирован");
             }
-            else
+            else if (inputUser == "2")
             {
                 Console.WriteLine("Ведите номер пользователя которого хотите разбанить:");
                 inputUser = Console.ReadLine();
