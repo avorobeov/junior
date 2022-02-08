@@ -251,13 +251,13 @@ namespace junior
             return meaning;
         }
 
-        private bool IsThereIndex(int index)
+        private bool IsThereIndex(int index, string text)
         {
             for (int i = 0; i < _players.Length; i++)
             {
                 if (_players[i].Index == index)
                 {
-                    Console.WriteLine("Пользователь успешно заблокирован");
+                    Console.WriteLine(text);
                     return true;
                 }
             }
@@ -313,7 +313,7 @@ namespace junior
 
             index = InputValidationInt("Ведите порядковый номер пользователя которого хотите удалить:");
 
-            if (IsThereIndex(index))
+            if (IsThereIndex(index, "Пользователь успешно удалён"))
             {
                 DeletePlayer(index);
                 Console.WriteLine("Пользователь удалён");
@@ -328,9 +328,9 @@ namespace junior
         {
             int index;
 
-            index = InputValidationInt("Ведите порядковый номер пользователя которого хотите забанить:");
+            index = InputValidationInt("Ведите порядковый номер пользователя которого хотите заблокировать:");
 
-            if (IsThereIndex(index))
+            if (IsThereIndex(index, "Пользователь успешно заблокирован"))
             {
                 Block(index);
             }
@@ -342,7 +342,7 @@ namespace junior
 
             index = InputValidationInt("Ведите порядковый номер пользователя которого хотите разблокировкировать:");
 
-            if (IsThereIndex(index))
+            if (IsThereIndex(index, "Пользователь успешно разблокирован"))
             {
                 Unlock(index);
             }
