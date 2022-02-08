@@ -316,7 +316,6 @@ namespace junior
             if (IsThereIndex(index, "Пользователь успешно удалён"))
             {
                 DeletePlayer(index);
-                Console.WriteLine("Пользователь удалён");
             }
             else
             {
