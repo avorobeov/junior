@@ -231,16 +231,18 @@ namespace junior
         {
             string inputUser;
 
-            int meaning;
+            int meaning = 0;
 
-            while (true)
+            bool isCorrect = false;
+
+            while (isCorrect == false)
             {
                 Console.Write(text);
                 inputUser = Console.ReadLine();
 
                 if (Int32.TryParse(inputUser, out meaning))
                 {
-                    break;
+                    isCorrect = true;
                 }
                 else
                 {
