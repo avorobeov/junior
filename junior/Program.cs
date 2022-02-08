@@ -284,7 +284,7 @@ namespace junior
         {
             if (_players.Length >= index)
             {
-                _players[index - 1].Block();
+                _players[index].Block();
 
                 return true;
             }
@@ -298,7 +298,7 @@ namespace junior
         {
             if (_players.Length >= index)
             {
-                _players[index - 1].Unlock();
+                _players[index].Unlock();
 
                 return true;
             }
