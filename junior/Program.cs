@@ -12,8 +12,8 @@ namespace junior
         {
             Database database = new Database();
 
-            database.AddPlaer(new Player(1, "den", 2, false));
-            database.AddPlaer(new Player(2, "valoda", 2, false));
+            database.ToAddPlaer(new Player(1, "den", 2, false));
+            database.ToAddPlaer(new Player(2, "valoda", 2, false));
 
             string inputUser;
 
@@ -36,14 +36,18 @@ namespace junior
                         break;
 
                     case "3":
-                        PlayerBan(database);
+                        PlayerBlock(database);
                         break;
 
                     case "4":
-                        database.ShowPlayers();
+                        PlayerUnlock(database);
                         break;
 
                     case "5":
+                        database.ShowPlayers();
+                        break;
+
+                    case "6":
                         isExit = true;
                         break;
                 }
@@ -54,12 +58,13 @@ namespace junior
         {
             Console.WriteLine("Для создания пользователя нажмите 1 \n" +
                               "Для удаления пользователя нажмите 2 \n" +
-                              "Для блокировки/разблокировки пользователя нажмите 3 \n" +
-                              "Для вывода всех пользователей нажмите  4 \n" +
-                              "Для выхода из программы веди 5");
+                              "Для блокировки пользователя нажмите 3 \n" +
+                              "Для разблокировки пользователя нажмите 4 \n" +
+                              "Для вывода всех пользователей нажмите  5 \n" +
+                              "Для выхода из программы веди 6");
         }
 
-        static void AddPlaer(Database database)
+        static private void AddPlaer(Database database)
         {
 
             string userName;
@@ -90,7 +95,7 @@ namespace junior
 
             if (database.CheckForUnique(userName, index))
             {
-                database.AddPlaer(new Player(index, userName, level, isBlocked));
+                database.ToAddPlaer(new Player(index, userName, level, isBlocked));
             }
             else
             {
@@ -98,7 +103,7 @@ namespace junior
             }
         }
 
-        static void DelitePlaer(Database database)
+        static private void DelitePlaer(Database database)
         {
             string inputUser;
 
@@ -109,7 +114,7 @@ namespace junior
 
             Int32.TryParse(inputUser, out index);
 
-            if (database.DeletePlaer(index))
+            if (database.ToDeletePlaer(index))
             {
                 Console.WriteLine("Пользователь удалён");
             }
@@ -119,38 +124,32 @@ namespace junior
             }
         }
 
-        static void PlayerBan(Database database)
+        static private void PlayerBlock(Database database)
         {
             string inputUser;
 
             int index;
 
-            Console.WriteLine("Если вы хотите забанить пользователя, нажмите 1 \n" +
-                              "Если вы хотите разбанить пользователя, нажмите 2");
+            Console.WriteLine("Ведите порядковый номер пользователя которого хотите забанить:");
             inputUser = Console.ReadLine();
 
-            if (inputUser == "1")
-            {
-                Console.WriteLine("Ведите порядковый номер пользователя которого хотите забанить:");
-                inputUser = Console.ReadLine();
+            Int32.TryParse(inputUser, out index);
 
-                Int32.TryParse(inputUser, out index);
+            database.Block(index);
+        }
 
-                database.BlockAndUnblock(index, true);
+        static private void PlayerUnlock(Database database)
+        {
+            string inputUser;
 
-                Console.WriteLine("Пользователь заблокирован");
-            }
-            else if (inputUser == "2")
-            {
-                Console.WriteLine("Ведите номер пользователя которого хотите разбанить:");
-                inputUser = Console.ReadLine();
+            int index;
 
-                Int32.TryParse(inputUser, out index);
+            Console.WriteLine("Ведите порядковый номер пользователя которого хотите разблокировкировать:");
+            inputUser = Console.ReadLine();
 
-                database.BlockAndUnblock(index, false);
+            Int32.TryParse(inputUser, out index);
 
-                Console.WriteLine("Пользователь разблокирован");
-            }
+            database.Block(index);
         }
     }
 
@@ -219,16 +218,14 @@ namespace junior
             _isBlocked = isBlocked;
         }
 
-        public void Ban(bool solution)
+        public void Block()
         {
-            if (solution == true)
-            {
-                IsBlocked = true;
-            }
-            else
-            {
-                IsBlocked = false;
-            }
+            IsBlocked = true;
+        }
+
+        public void Unlock()
+        {
+            IsBlocked = false;
         }
     }
 
@@ -236,7 +233,7 @@ namespace junior
     {
         private Player[] _players = new Player[0];
 
-        public bool AddPlaer(Player player)
+        public bool ToAddPlaer(Player player)
         {
             Player[] expandArray = new Player[_players.Length + 1];
 
@@ -252,7 +249,7 @@ namespace junior
             return true;
         }
 
-        public bool DeletePlaer(int index)
+        public bool ToDeletePlaer(int index)
         {
             Player[] expandArray = new Player[_players.Length - 1];
 
@@ -283,11 +280,25 @@ namespace junior
             return true;
         }
 
-        public bool BlockAndUnblock(int index, bool solution)
+        public bool Block(int index)
         {
             if (_players.Length >= index)
             {
-                _players[index - 1].Ban(solution);
+                _players[index - 1].Block();
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool Unlock(int index)
+        {
+            if (_players.Length >= index)
+            {
+                _players[index - 1].Unlock();
 
                 return true;
             }
