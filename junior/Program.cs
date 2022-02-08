@@ -253,7 +253,17 @@ namespace junior
         {
             Player[] expandArray = new Player[_players.Length - 1];
 
-            if (_players.Length >= index)
+            bool isThereIndex = false;
+
+            for (int i = 0; i < _players.Length; i++)
+            {
+                if(_players[i].Index == index)
+                {
+                    isThereIndex = true;
+                }
+            }
+
+            if (isThereIndex)
             {
                 for (int i = 0; i < _players.Length; i++)
                 {
