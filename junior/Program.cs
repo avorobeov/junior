@@ -70,7 +70,6 @@ namespace junior
 
         private bool _isBlocked;
 
-
         public int Level { get; private set; }
 
         public int Id
