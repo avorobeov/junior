@@ -269,6 +269,8 @@ namespace junior
             }
             else
             {
+                LastUsedId--;
+
                 Console.WriteLine("Данные не прошли  проверку на уникальность попробуйте ещё раз");
             }
         }
