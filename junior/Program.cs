@@ -70,6 +70,9 @@ namespace junior
 
         private bool _isBlocked;
 
+
+        public int Level { get; private set; }
+
         public int Id
         {
             get
@@ -93,8 +96,6 @@ namespace junior
                 _nickname = value;
             }
         }
-
-        public int Level { get; private set; }
 
         public bool IsBlocked
         {
