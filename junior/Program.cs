@@ -226,6 +226,7 @@ namespace junior
                 if (_players[i].Id == id)
                 {
                     player = _players[i];
+
                     return true;
                 }
             }
