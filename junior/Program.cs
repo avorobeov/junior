@@ -25,19 +25,19 @@ namespace junior
                 switch (inputUser)
                 {
                     case "1":
-                        database.AttemptToAddPlayer();
+                        database.TryAddPlayer();
                         break;
 
                     case "2":
-                        database.AttemptToDelitePlayer();
+                        database.TryDelitePlayer();
                         break;
 
                     case "3":
-                        database.AttemptToPlayerBlock();
+                        database.TryPlayerBlock();
                         break;
 
                     case "4":
-                        database.AttemptToPlayerUnlock();
+                        database.TryPlayerUnlock();
                         break;
 
                     case "5":
@@ -66,20 +66,20 @@ namespace junior
     {
         private string _userName;
 
-        private int _index;
+        private int _id;
         private int _level;
 
         private bool _isBlocked;
 
-        public int Index
+        public int Id
         {
             get
             {
-                return _index;
+                return _id;
             }
             private set
             {
-                _index = value;
+                _id = value;
             }
         }
 
@@ -119,9 +119,9 @@ namespace junior
             }
         }
 
-        public Player(int index, string username, int lavel, bool isBlocked)
+        public Player(int id, string username, int lavel, bool isBlocked)
         {
-            _index = index;
+            _id = id;
             _userName = username;
             _level = lavel;
             _isBlocked = isBlocked;
@@ -160,7 +160,7 @@ namespace junior
             return true;
         }
 
-        private void DeletePlayer(int index)
+        private void DeletePlayer(int id)
         {
             Player[] expandArray = new Player[_players.Length - 1];
 
@@ -168,7 +168,7 @@ namespace junior
 
             for (int i = 0; i < _players.Length; i++)
             {
-                if (_players[i].Index != index)
+                if (_players[i].Id != id)
                 {
                     if (isDelete == false)
                     {
@@ -188,22 +188,22 @@ namespace junior
             _players = expandArray;
         }
 
-        private void Block(int index)
+        private void Block(int id)
         {
             for (int i = 0; i < _players.Length; i++)
             {
-                if(_players[i].Index == index)
+                if(_players[i].Id == id)
                 {
                     _players[i].Block();
                 }
             }
         }
 
-        private void Unlock(int index)
+        private void Unlock(int id)
         {
             for (int i = 0; i < _players.Length; i++)
             {
-                if (_players[i].Index == index)
+                if (_players[i].Id == id)
                 {
                     _players[i].Unlock();
                 }
@@ -253,11 +253,11 @@ namespace junior
             return meaning;
         }
 
-        private bool IsThereIndex(int index, string text)
+        private bool IsThereIndex(int id, string text)
         {
             for (int i = 0; i < _players.Length; i++)
             {
-                if (_players[i].Index == index)
+                if (_players[i].Id == id)
                 {
                     Console.WriteLine(text);
                     return true;
@@ -268,21 +268,21 @@ namespace junior
 
             return false;
         }
-      
+
         public void ShowPlayers()
         {
             for (int i = 0; i < _players.Length; i++)
             {
-                Console.WriteLine($"Порядковый номер {_players[i].Index} Имя пользователя {_players[i].UserName} Левел {_players[i].Level} Есть ли у пользователя бан {_players[i].IsBlocked} \n");
+                Console.WriteLine($"Порядковый номер {_players[i].Id} Имя пользователя {_players[i].UserName} Левел {_players[i].Level} Есть ли у пользователя бан {_players[i].IsBlocked} \n");
             }
         }
 
-        public void AttemptToAddPlayer()
+        public void TryAddPlayer()
         {
             string userName;
             string inputUser;
 
-            int index;
+            int id;
             int level;
 
             bool isBlocked;
@@ -290,7 +290,7 @@ namespace junior
             Console.Write($"Для создания нового пользователя ведите его имя:");
             userName = Console.ReadLine();
 
-            index = Autoincrement++;
+            id = Autoincrement++;
 
             level = InputValidationInt("Ведите левел пользователя:");
            
@@ -301,7 +301,7 @@ namespace junior
 
             if (CheckForUnique(userName))
             {
-                AddPlayer(new Player(index, userName, level, isBlocked));
+                AddPlayer(new Player(id, userName, level, isBlocked));
             }
             else
             {
@@ -309,15 +309,15 @@ namespace junior
             }
         }
 
-        public void AttemptToDelitePlayer()
+        public void TryDelitePlayer()
         {
-            int index;
+            int id;
 
-            index = InputValidationInt("Ведите порядковый номер пользователя которого хотите удалить:");
+            id = InputValidationInt("Ведите порядковый номер пользователя которого хотите удалить:");
 
-            if (IsThereIndex(index, "Пользователь успешно удалён"))
+            if (IsThereIndex(id, "Пользователь успешно удалён"))
             {
-                DeletePlayer(index);
+                DeletePlayer(id);
             }
             else
             {
@@ -325,27 +325,27 @@ namespace junior
             }
         }
 
-        public void AttemptToPlayerBlock()
+        public void TryPlayerBlock()
         {
-            int index;
+            int id;
 
-            index = InputValidationInt("Ведите порядковый номер пользователя которого хотите заблокировать:");
+            id = InputValidationInt("Ведите порядковый номер пользователя которого хотите заблокировать:");
 
-            if (IsThereIndex(index, "Пользователь успешно заблокирован"))
+            if (IsThereIndex(id, "Пользователь успешно заблокирован"))
             {
-                Block(index);
+                Block(id);
             }
         }
 
-        public void AttemptToPlayerUnlock()
+        public void TryPlayerUnlock()
         {
-            int index;
+            int id;
 
-            index = InputValidationInt("Ведите порядковый номер пользователя которого хотите разблокировкировать:");
+            id = InputValidationInt("Ведите порядковый номер пользователя которого хотите разблокировкировать:");
 
-            if (IsThereIndex(index, "Пользователь успешно разблокирован"))
+            if (IsThereIndex(id, "Пользователь успешно разблокирован"))
             {
-                Unlock(index);
+                Unlock(id);
             }
         }
     }
